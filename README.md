@@ -33,20 +33,20 @@ Das komplette Spiel soll in C geschrieben und in der Windows Konsole ausführbar
 
 ## 💡 Architekturspezifikation
   Das Projekt wird in drei größere Modulblöcke, die jeweils verschiedene Funktionsblöcke abbilden, unterteilt. 
-  ### Eingabe (Lukas Sellmaier)
-    
+  ### Eingabe 
+    (Lukas Sellmaier)
   
-  ### Spielmechanik (Tim Gebhard)
-    
+  ### Spielmechanik 
+    (Tim Gebhard) 
   
-  ### Visualisierung (Michael Böckelen)
-
+  ### Visualisierung 
+    (Michael Böckelen) 
   
-  ### Rangliste (Lukas Sellmaier)
+  ### Rangliste 
+    (Lukas Sellmaier)
   
-  
-  ### Debugging und Logging (Michael Böckelen)
-  
+  ### Debugging und Logging 
+    (Michael Böckelen) 
   
 ## ⌨️ Designspezifikation
  * Alle Funktionen sollten als `return` value den eigenen Fehler-Datentyp `Snake_ErrorType` verwenden, um Logging zu ermöglichen.
