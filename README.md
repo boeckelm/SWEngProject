@@ -32,21 +32,34 @@ Das komplette Spiel soll in C geschrieben und in der Windows Konsole ausführbar
 
 
 ## 💡 Architekturspezifikation
-  Das Projekt wird in drei größere Modulblöcke, die jeweils verschiedene Funktionsblöcke abbilden, unterteilt. 
-  ### ⌨️Eingabe 
-  Lukas Sellmaier
+  Das Projekt wird in mehrere größere Modulblöcke, die jeweils verschiedene Funktionsblöcke abbilden, unterteilt:  
   
-  ### 🎮Spielmechanik 
+  ### ⌨️Eingabe 
+  
+   `Lukas Sellmaier`
+  
+  
+  ### 🎮 Spielmechanik 
+  
   Tim Gebhard
   
-  ### 🖥️Visualisierung 
-   Michael Böckelen 
+  ### 🖥️ Visualisierung  
+` Michael Böckelen`    
+Diese Modul ist für sämtliche Ausgaben auf dem Terminal verantwortlich und stellt entsprechende Schnittstellen von reiner Textausgabe bin hin zur Spielvisulisierung zur        Verfügung. Als Rückgabewert wird der jeweils der Error-Struct, beschrieben in `Debugging und Logging`, verwendet. Folgende Schnittstellen sollen erzielt werden:
+* Reine Textausgabe in gewohnter Form, damit es bei einer Ausgabe während des Spiels nicht zu Grafikfehlern oder ähnlichem kommt.
+
   
-  ### 🏆Rangliste 
-   Lukas Sellmaier
+### 🏆 Rangliste 
+  `Lukas Sellmaier`
   
-  ### 🪲Debugging und Logging 
-   Michael Böckelen 
+### 🐞 Debugging und Logging 
+  ` Michael Böckelen`  
+Diese Modul stellt Schnittstellen zur besseren Fehlerdokumentation zur Verfügung.  
+* Um einen **einheitlichen und auswertbaren Rückgabewert** zur Verfügung zu stellen, wird die Datenstrukur `Snake_DBG_t` erstellt. Diese beinhaltet einen ganzzahligen Statuscode sowie einen String zur Fehlerbeschreibung.   
+Als Statuscodes sollen die Enums `SNAKE_SUCCESS` und `SNAKE_FAIL` verwendet werden.  
+Sollte der Statuscode SNAKE_FAIL samt Fehlerbeschreibung übermittelt werden, wird die Struktur zusammen mit einem Zeitstempel in eine Text-Datei geschrieben.   
+Diese Struktur sollte wo immer möglich als Rückgabewert einer Funktion verwendet werden. Beispiele sind in der Designspezifikation zu finden.
+
   
 ## ⌨️ Designspezifikation
  * Alle Funktionen sollten als `return` value den eigenen Fehler-Datentyp `Snake_ErrorType` verwenden, um Logging zu ermöglichen.
@@ -59,7 +72,7 @@ Das komplette Spiel soll in C geschrieben und in der Windows Konsole ausführbar
   
    ### Visualisierung
    
-   ### Der Super Strukt (Designed bei Michael)
+
     
     
 
