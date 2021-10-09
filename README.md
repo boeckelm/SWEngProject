@@ -26,7 +26,7 @@ Das komplette Spiel soll in C geschrieben und in der Windows Konsole ausführbar
 * Variabler Takt für unterschiedliche Spielgeschwindigkeiten
 * Zufälliges Erscheinen der Goodys
 * Nach Aufnahme eines Goodys wird Schlange am Kopf erweitert
-* Erweiterte Debugmöglichkeiten in Form eines separat abzuspeichernden Log-Files, der alle Spielzüge und mögliche Runtime-Fehler dokumentiert
+* Erweiterte Debugmöglichkeiten in Form eines separat abzuspeichernden Log-Files, der mögliche Runtime-Fehler dokumentiert
 * Darkmode
 
 
@@ -38,15 +38,23 @@ Das komplette Spiel soll in C geschrieben und in der Windows Konsole ausführbar
   
    `Lukas Sellmaier`
   
-  
   ### 🎮 Spielmechanik 
   
   Tim Gebhard
   
   ### 🖥️ Visualisierung  
 ` Michael Böckelen`    
-Diese Modul ist für sämtliche Ausgaben auf dem Terminal verantwortlich und stellt entsprechende Schnittstellen von reiner Textausgabe bin hin zur Spielvisulisierung zur        Verfügung. Als Rückgabewert wird der jeweils der Error-Struct, beschrieben in `Debugging und Logging`, verwendet. Folgende Schnittstellen sollen erzielt werden:
-* Reine Textausgabe in gewohnter Form, damit es bei einer Ausgabe während des Spiels nicht zu Grafikfehlern oder ähnlichem kommt.
+Diese Modul ist für sämtliche Ausgaben auf dem Terminal verantwortlich und stellt entsprechende Schnittstellen zur Verfügung. Als Rückgabewert wird der jeweils der `Snake_DBG_t`-Struct, beschrieben in `Debugging und Logging`, verwendet.
+
+* **Hauptaufgabe: Visualisierung des Spiels**  
+Zu Anfang des Spiels soll das Spielfeld mit Hilfe der zu übergebenden `Snake_VS_init_t` Struktur im Terminal initalisiert werden. Die Struktur beinhaltet die Größe und eine mögliche Darkmode-Einstellung. Die Funktion cleared das Terminal und gibt die Ränder des Spielfeldes aus.
+* Während des Spiels müssen die Positionen der Elemente laufend angepasst werden. Dafür gibt es eine Update-Funktion, der die Koordinaten des **Schlangenkopfes, des Schlangenendes und die der Knickstellen**, sowie die des Goodys, übergeben werden. Zur besseren Vorstellung ein Bild:  
+
+* <img align="center" width="541" height="210" src="https://abload.de/img/snake_2plk7l.png"> 
+* Für die einzelnen Koordinaten soll der Struct `Snake_Vektor_t`, der je eine ganzzahlige x und y Variabe besitzt, verwendet werden. Zur Übergabe an die Update-Funktion soll dann der `Snake_VS_Update_t` Struct verwendet werden, genaueres in den Designspezifikationen.
+
+* Zur reinen Textausgabe in gewohnter Format-String-Form soll eine Funktion erstellt werden, die eine Ausgabe auch während des Spiels ohne Grafikfehler oder ähnlichem ermöglicht.
+* Ausgabe eines Spielende-Screens samt Rangliste, hierbei orientiert sich die Übergabe am Ranglisten-Modul.
 
   
 ### 🏆 Rangliste 
@@ -54,15 +62,17 @@ Diese Modul ist für sämtliche Ausgaben auf dem Terminal verantwortlich und ste
   
 ### 🐞 Debugging und Logging 
   ` Michael Böckelen`  
-Diese Modul stellt Schnittstellen zur besseren Fehlerdokumentation zur Verfügung.  
-* Um einen **einheitlichen und auswertbaren Rückgabewert** zur Verfügung zu stellen, wird die Datenstrukur `Snake_DBG_t` erstellt. Diese beinhaltet einen ganzzahligen Statuscode sowie einen String zur Fehlerbeschreibung.   
-Als Statuscodes sollen die Enums `SNAKE_SUCCESS` und `SNAKE_FAIL` verwendet werden.  
-Sollte der Statuscode SNAKE_FAIL samt Fehlerbeschreibung übermittelt werden, wird die Struktur zusammen mit einem Zeitstempel in eine Text-Datei geschrieben.   
-Diese Struktur sollte wo immer möglich als Rückgabewert einer Funktion verwendet werden. Beispiele sind in der Designspezifikation zu finden.
+Dieses Modul stellt Schnittstellen zur besseren Fehlerdokumentation zur Verfügung.  
+* Um einen **einheitlichen und auswertbaren Rückgabewert** zur Verfügung zu stellen, wird die Datenstrukur `Snake_DBG_t` erstellt. Diese beinhaltet einen ganzzahligen Statuscode, ein Severity-Level (Schweregrad) sowie einen String zur Fehlerbeschreibung.   
+Als Statuscodes sollen die Enums `SNAKE_SUCCESS` und `SNAKE_FAIL` verwendet werden, als Severity-Levels jene des Severity Enums von `SNAKE_DEBUG` bis `SNAKE_FATAL`.   
+Diese Struktur sollte wo immer möglich als Rückgabewert einer Funktion verwendet werden. Beispiele und Details sind in der Designspezifikation zu finden.
 
+* Zur allgemeinen Abspeicherung von Debug-Daten wird eine Funktion erstellt, der man eine Zeichenkette sowie einen Severity-Grad übergeben kann.
+
+* Sollte der Statuscode `SNAKE_FAIL` als Rückgabewert übergeben werden, oder ein separater Debug-Eintrag mittels vorheriger Funktion gewünscht sein, werden diese Daten zusammen mit einem Zeitstempel in eine Datei geschrieben. 
   
 ## ⌨️ Designspezifikation
- * Alle Funktionen sollten als `return` value den eigenen Fehler-Datentyp `Snake_ErrorType` verwenden, um Logging zu ermöglichen.
+ * 
    ### Eingabe
        
   
