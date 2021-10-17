@@ -54,7 +54,7 @@ Während dem Spiel verarbeitet die Spielsteuerung die Eingabe des Benutzers, sod
 Fährt die Schlange über einen durch die Spielmechanik zufällig auf dem Spielfeld generierten Goody, so wird diese am Kopf um ein weiteres Element (Körperteil) erweitert und der     Punktestand des Spielers wird erhöht.
 
   
- ### 🖥️Visualisierung 
+  ### 🖥️Visualisierung 
    Michael Böckelen 
   
   ### 🏆Rangliste 
