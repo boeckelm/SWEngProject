@@ -27,18 +27,3 @@ Das komplette Spiel soll in C geschrieben und in der Windows Konsole ausführbar
 * Zufälliges Erscheinen der Goodys
 * Nach Aufnahme eines Goodys wird Schlange am Kopf erweitert
 * Erweiterte Debugmöglichkeiten in Form eines separat abzuspeichernden Log-Files, der alle Spielzüge und mögliche Runtime-Fehler dokumentiert
-* Darkmode
-
-
-
-## 💡 Architekturspezifikation
-
-Das Projekt wird in drei größere Modulblöcke, die jeweils verschiedene Funktionsblöcke abbilden, unterteilt. 
-
-### 1. Block: TBD
-
-## ⌨️ Designspezifikation
- * Alle Funktionen sollten als `return` value den eigenen Fehler-Datentyp `Snake_ErrorType` verwenden, um Logging zu ermöglichen.
-
-
-
