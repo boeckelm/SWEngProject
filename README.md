@@ -64,12 +64,83 @@ Fährt die Schlange über einen durch die Spielmechanik zufällig auf dem Spielf
        
   
    ### Spielmechanik
-        randomGoody();
-        void restart();
-  
+   
+*Globale Variablen:
+
+Jedes Element der Schlange besitzt eine Position auf dem Spielfeld, diese wird im  `Snake ` Array vom Typ  `snakepart ` gespeichert. Das erste Element des Arrays ist der Schlangenkopf, die anderen Gliedmaßen folgen im Array danach.
+
+snakepart snake[10];
+
+Zur einfacheren Umsetzung wird am Anfang der Entwicklungsphase das Snake Array auf 10 Elemente beschränkt. Im Verlauf der Entwicklung wird hierbei jedoch   die `malloc()` Funktion hinzugefügt.
+
+Die Schlangenteile vom Typ  `snakepart` bestehen aus der aktuellen X- und Y-Position und werden durch einen typedef als neuen Typen definiert.
+
+  	 `typedef struct{
+     		 int pos_X; //X-Position
+      		int pos_Y;//Y-Position
+    	 }snakepart;`
+
+Des Weiteren wird die Länge der Schlange in einer Globalen Variable gespeichert.
+
+     	`s_length:int ` //Schlangenlänge
+      
+Diese ist zu Beginn des Spiels 1 und kann durch aufsammeln von Goodys im Laufe des Spiels erhöht werden. Beim einsammel eines Goodys wird die länge der Schlange durch die nachfolgend beschriebene `eat()` Funktion erhöht.
+
+ Auch der Goody wird auf dem Spielfeld dem Spielfeld angezeigt. Damit er angezeigt und von der Schlange gefressen werden kann wird seine Position benötigt. Diese wird in der Globalen Variable
+ 
+    	`Goody:snakepart`  //Goody Position
+      
+Goody vom Typ snakepart gespeichert und wird von der randomGoody() Funktion initialisiert und während der Laufzeit verändert.
+
+    	`Score:int`
+      
+Die Ganzzahl Variable Score gibt den aktuellen Punktestand wieder. Zu beginn des Spiels wird dieser auf 0 gesetzt. Wird ein Goody eingesammelt wird durch die eat() Funktion der Score um 10 Pkt. erhöht. 
+ Zu besseren Verständnis des Steuereingangs wir ein weitere Typ für die Steuerung des Schlangenkopfs definiert.
+ 
+    	`typedef enum{
+        		up;  //W oder  ↑
+        		down; //S oder ↓
+        		left; //A oder ←
+       		 right; //D →
+     	}stearing;`
+
+Die Variable laststearing von dem neuen Typ stearing gibt an, welche Taste zu Letzt gedrückt wurde. Diese wird durch das Eingabemodul verändert.
+
+laststearing:stearing
+
+Für den Rückgabewert der checkNextStep-Funktion wird ein Datentyp true oder false definiert. Diese gibt an, ob der nächste Zug zum Spielende oder zum verfahren der Schlange führt.
+
+      	`typedef enum{
+        		false;
+       		 true;
+     	}boolean;`
+
+*Funktionen:
+
+`void init();` Initialisiert zu beginn jedes Spiels alle wichtigen Variablen und Starte Startfrequenz des Spiels
+
+`void restart();` Setzt das Spielfeld und die Globale Variablen (snake, goody, laststearing, score, s_length) zurück und startet Spiel erneut
+
+`snakepart randomGoody();` Erzeugt eine zufällig generierte Position für die Goodys. Überprüft beim erzeugen der Position ob das Feld schon belegt ist, wenn nicht wird die Goody-Position zurückgegeben.
+
+ `void delay(int Waiting_Time_s);` Die Delay-Funktion ist Taktgeber des Spiels, wird sie aufgerufen wird die Angegebene Zeit gewartet. Die Wartezeit wird als Übergabeparameter als Ganzzahl in Sekunden angegeben. Zu Beginn soll die Wartezeit 500ms betragen. 
+ 
+ `void eat(snakepart *head_next); Überprüft ob Schlangenkopf sich auf Goody bewegt, wenn ja erhöht die Funktion die Schlangenlänge um 1, den Score um 10 Pkt. und ein neuer zufälliger Goody wird erzeugt.
+ 
+ `boolean checkNextStep(int next_Pos_X, int next_Pos_Y); ` Überprüft ob die nächste Position möglich ist. Also kein Hindernis berührt wird.  
+ 
+	-false : Hindernis wird berührt
+  -true : Hindernis wird nicht berührt
+
+`void move(int next_Pos_X, int next_Pos_Y);` Schiebt die Schlange auf die neue Position. Dazu wird die Position des Schlangenkopfs im Array um 1 Element weitergeschoben. Die neue Position wird als X- und Y-Position in den Schlangenkopf geschrieben. 
+    
+`Snake_ErrorType game();` Regelt den kompletten Spielverlauf
+
+-Siehe Struktogramm
+
    ### Visualisierung
    
-   ### Der Super Strukt (Designed bei Michael)
+  
     
     
 
