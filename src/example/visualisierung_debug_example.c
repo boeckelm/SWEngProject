@@ -2,10 +2,10 @@
  *
  * @brief Beispiel zur Visualisieren des Spieles "Snake".
  *
- * @version 1.0.0
+ * @version 1.0.1
  *
  * @par
- * COPYRIGHT NOTICE: (c) 2021 Michael Böckelen, Hochschule Landshut.  All rights reserved.
+ * COPYRIGHT NOTICE: (c) 2021 Michael BÃ¶ckelen, Hochschule Landshut.  All rights reserved.
  */
 
 #include <stdio.h>
@@ -21,11 +21,9 @@ int main()
 
     Snake_Vektor_t snake[5];
     Snake_Vektor_t goody = { 23, 15 };
-    
     unsigned short score = 10;
     
     
-
     for (unsigned short j = 15; j > 0; j--) {
         for (unsigned short i = 0; i < 5; i++) {
 
@@ -46,6 +44,8 @@ int main()
     Snake_DGB_Save();
 
     Snake_DBG_Freigeben();
+    
+    return 0;
 
 }
 
