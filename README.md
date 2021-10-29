@@ -33,8 +33,13 @@ Das komplette Spiel soll in C geschrieben und in der Windows Konsole ausführbar
 
 ## 💡 Architekturspezifikation
   Das Projekt wird in drei größere Modulblöcke, die jeweils verschiedene Funktionsblöcke abbilden, unterteilt. 
+  
   ### ⌨️Eingabe 
-  Lukas Sellmaier
+  Lukas Sellmaier  
+  In diesem Modul befinden sich die Funktionen welche die eingabe über die tastaur ermöglichen.
+  * Namen eingeben und überprüfen der Anforderungen
+  * Die steuerung der Schlange über die Tasten W A S D
+  * Auf beliebiege Tastertureingabe warten
   
   ### 🎮Spielmechanik 
    ##### wird Programmiert und Entwickelt von Tim Gebhard
@@ -53,8 +58,13 @@ Fährt die Schlange über einen durch die Spielmechanik zufällig auf dem Spielf
    Michael Böckelen 
   
   ### 🏆Rangliste 
-   Lukas Sellmaier
-  
+   Lukas Sellmaier  
+   In diesem Modul wird die Rangliste angelegt sowie ihre Funktionen und das Struct zur übergabe der Daten definiert.
+    * Es wird einen TextDatei angelegt, in welcher Zehn  Namen und ihre Punktestände gespeichert werden
+    * Zu Beginn enthält sie Zehn Platzhalter mit jeweils Null punkten
+    * Über eine Funktion kann man einen neuen Punktestand mit der Liste vergleichen und gegebenenfalls in diese aufnehmen
+    * Des weiteren wird hier ein Struct definiert mit dem die Daten anderen Funktionen zur verfügung gestellt werden können
+    
   ### 🪲Debugging und Logging 
    Michael Böckelen 
   
