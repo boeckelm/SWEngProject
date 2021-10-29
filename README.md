@@ -64,13 +64,13 @@ Fährt die Schlange über einen durch die Spielmechanik zufällig auf dem Spielf
        
   
    ### Spielmechanik
-   
-**Globale Variablen:**
+  
+* **Globale Variablen:**
 
 Jedes Element der Schlange besitzt eine Position auf dem Spielfeld, diese wird im  `Snake ` Array vom Typ  `snakepart ` gespeichert. Das erste Element des Arrays ist der Schlangenkopf, die anderen Gliedmaßen folgen im Array danach.
-
+```c
 snakepart snake[10];
-
+```
 Zur einfacheren Umsetzung wird am Anfang der Entwicklungsphase das Snake Array auf 10 Elemente beschränkt. Im Verlauf der Entwicklung wird hierbei jedoch   die `malloc()` Funktion hinzugefügt.
 
 Die Schlangenteile vom Typ  `snakepart` bestehen aus der aktuellen X- und Y-Position und werden durch einen typedef als neuen Typen definiert.
@@ -101,7 +101,7 @@ Die Ganzzahl Variable Score gibt den aktuellen Punktestand wieder. Zu beginn des
         	up,  //W oder  ↑
         	down, //S oder ↓
         	left, //A oder ←
-       		 right //D →
+       		right //D →
      	}stearing;
 ```
 Die Variable laststearing von dem neuen Typ stearing gibt an, welche Taste zu Letzt gedrückt wurde. Diese wird durch das Eingabemodul verändert.
@@ -115,28 +115,63 @@ Für den Rückgabewert der checkNextStep-Funktion wird ein Datentyp true oder fa
        		 true;
      	}boolean;
 ```
-**Funktionen:**
+<br><br/>
+*  **Funktionen:**
 
-`void init();` Initialisiert zu beginn jedes Spiels alle wichtigen Variablen und Starte Startfrequenz des Spiels
+***Initialisierung der wichtigesten Variablen*** <br/>
 
-`void restart();` Setzt das Spielfeld und die Globale Variablen (snake, goody, laststearing, score, s_length) zurück und startet Spiel erneut
+Initialisiert zu beginn jedes Spiels die Variablen `score = 0`, `snake` alle Elemente außer Snake[0] mit NULL, `s_length = 1`, `soody` mit random Position und startet Startfrequenz des Spiels.
+```c
+void init(); 
+``` 
 
-`snakepart randomGoody();` Erzeugt eine zufällig generierte Position für die Goodys. Überprüft beim erzeugen der Position ob das Feld schon belegt ist, wenn nicht wird die Goody-Position zurückgegeben.
+***Neustart*** <br/>
+Setzt das Spielfeld und die Globale Variablen (snake, soody, last_stearing, score, s_length) zurück und startet Spiel erneut.
+```c
+void restart(); 
+``` 
 
- `void wait(int Waiting_Time_ms);` Die Delay-Funktion ist Taktgeber des Spiels, wird sie aufgerufen wird die Angegebene Zeit gewartet. Die Wartezeit wird als Übergabeparameter als Ganzzahl in Millisekunden angegeben. Zu Beginn soll die Wartezeit 500ms betragen. 
+***Neuer Goody*** <br/>
+Erzeugt eine zufällig generierte Position für die Goodys. Überprüft beim erzeugen der Position ob das Feld schon belegt ist, wenn nicht wird die Goody-Position zurückgegeben.
+```c
+snakepart randomGoody();
+``` 
+
+***Spielgeschwindigkeit*** <br/>
+Die Delay-Funktion ist Taktgeber des Spiels, wird sie aufgerufen wird die angegebene Zeit gewartet. Die Wartezeit wird als Übergabeparameter in Millisekunden und als Ganzzahl angegeben. Zu Beginn soll die Wartezeit 500ms betragen.
+ ```c
+ void wait(int Waiting_Time_ms);
+ ``` 
+
+***Wenn Goody aufgesammlt wird*** <br/>
+Überprüft ob Schlangenkopf sich auf Goody bewegt, wenn ja erhöht die Funktion die Schlangenlänge um 1, den Score um 10 Pkt. und eine neue zufällige Goody-Position wird erzeugt. Benötigt die nächste Position vom Schlangenkopf als Snakepart Datentyp. 
+```c
+void eat(snakepart next);
+```
+
+***Überprüfung des nächsten Schritts*** <br/>
+Überprüft ob die nächste Position möglich ist, also ob kein Hinderniss berührt wird. Als Übergabeparameter wird die nächste Position des Schlangenkopfts als Snakepart Datentyp benötigt.
+```c
+ boolean checkNextStep(snakepart next); 
  
- `void eat(int next_Pos_X, int next_Pos_Y);` Überprüft ob Schlangenkopf sich auf Goody bewegt, wenn ja erhöht die Funktion die Schlangenlänge um 1, den Score um 10 Pkt. und ein neuer zufälliger Goody wird erzeugt.
- 
- `boolean checkNextStep(int next_Pos_X, int next_Pos_Y); ` Überprüft ob die nächste Position möglich ist. Also kein Hindernis berührt wird.  
- 
-  -false : Hindernis wird berührt <br><br/>
-  -true : Hindernis wird nicht berührt
+  //false : Hindernis wird berührt 
+  //true : Hindernis wird nicht berührt
+	
+```
 
-`void move(int next_Pos_X, int next_Pos_Y);` Schiebt die Schlange auf die neue Position. Dazu wird die Position des Schlangenkopfs im Array um 1 Element weitergeschoben. Die neue Position wird als X- und Y-Position in den Schlangenkopf geschrieben. 
-    
-`Snake_ErrorType game();` Regelt den kompletten Spielverlauf
+***Bewegung der Schlange*** <br/>
+Schiebt die Schlange auf die neue Position. Dazu wird die Position des Schlangenkopfs im Array um 1 Element weiter nach hinten geschoben. Die neue X- und Y-Position wird ind das 0.Element des Arrays, also den Schlangenkopf geschrieben. Als Übergabeparameter wird die nächste Position des Schlangenkopfts als Snakepart Datentyp benötigt.
+```c
+void move(snakepart next); 
+``` 
 
--Siehe Struktogramm
+***Spielablauf*** <br/>
+Regelt den kompletten Spielverlauf, siehe Struktogramm.
+```c
+Snake_ErrorType game(); 
+``` 
+
+<img align="center" width="800" height="600" src="https://abload.de/img/struktogramm-spiel-snz0jum.png"> 
 
    ### Visualisierung
    
