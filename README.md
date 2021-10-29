@@ -98,10 +98,10 @@ Die Ganzzahl Variable Score gibt den aktuellen Punktestand wieder. Zu beginn des
  Zu besseren Verständnis des Steuereingangs wir ein weitere Typ für die Steuerung des Schlangenkopfs definiert.
  ```c
     	typedef enum{
-        		up;  //W oder  ↑
-        		down; //S oder ↓
-        		left; //A oder ←
-       		 right; //D →
+        	up,  //W oder  ↑
+        	down, //S oder ↓
+        	left, //A oder ←
+       		 right //D →
      	}stearing;
 ```
 Die Variable laststearing von dem neuen Typ stearing gibt an, welche Taste zu Letzt gedrückt wurde. Diese wird durch das Eingabemodul verändert.
@@ -123,7 +123,7 @@ Für den Rückgabewert der checkNextStep-Funktion wird ein Datentyp true oder fa
 
 `snakepart randomGoody();` Erzeugt eine zufällig generierte Position für die Goodys. Überprüft beim erzeugen der Position ob das Feld schon belegt ist, wenn nicht wird die Goody-Position zurückgegeben.
 
- `void delay(int Waiting_Time_s);` Die Delay-Funktion ist Taktgeber des Spiels, wird sie aufgerufen wird die Angegebene Zeit gewartet. Die Wartezeit wird als Übergabeparameter als Ganzzahl in Sekunden angegeben. Zu Beginn soll die Wartezeit 500ms betragen. 
+ `void wait(int Waiting_Time_ms);` Die Delay-Funktion ist Taktgeber des Spiels, wird sie aufgerufen wird die Angegebene Zeit gewartet. Die Wartezeit wird als Übergabeparameter als Ganzzahl in Millisekunden angegeben. Zu Beginn soll die Wartezeit 500ms betragen. 
  
  `void eat(snakepart *head_next);` Überprüft ob Schlangenkopf sich auf Goody bewegt, wenn ja erhöht die Funktion die Schlangenlänge um 1, den Score um 10 Pkt. und ein neuer zufälliger Goody wird erzeugt.
  
