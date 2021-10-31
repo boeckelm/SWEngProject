@@ -35,52 +35,132 @@ Das komplette Spiel soll in C geschrieben und in der Windows Konsole ausführbar
   Das Projekt wird in drei größere Modulblöcke, die jeweils verschiedene Funktionsblöcke abbilden, unterteilt. 
   
   ### ⌨️Eingabe 
-  Lukas Sellmaier  
-  In diesem Modul befinden sich die Funktionen welche die eingabe über die tastaur ermöglichen.
+ ``` Lukas Sellmaier ```
+ 
+ 
+  In diesem Modul befinden sich die Funktionen welche die Eingabe über die Tastaur ermöglichen.
   * Namen eingeben und überprüfen der Anforderungen
-  * Die steuerung der Schlange über die Tasten W A S D
+  * Die Steuerung der Schlange über die Tasten ```W``` ```A``` ```S``` ```D```
   * Auf beliebiege Tastertureingabe warten
   
-  ### 🎮Spielmechanik 
-   ##### wird Programmiert und Entwickelt von Tim Gebhard
-   
-Das Modul der Spielsteuerung steuert den Programmablauf sowie die Spielmechanik.
 
-* Programmablauf: 
-Nach Start des Spiels soll zu Beginn die Bestenliste angezeigt werden. Der Benutzer soll dann aufgefordert werden eine Eingabe zu seinem gewünschten Spielername zu                    machen. Nach Bestätigen der Eingabe soll das Spiel gestartet werden. D. h. das Spielfeld soll erscheinen und die Schlange sollte anfangen sich mit einer bestimmten                    Geschwindigkeit zu bewegen. Berührt die Schlange sich selbst oder eine der vier Rändern, wird das Spiel beendet. Der Benutzter soll anschließend eine Ausgabe zusehen                  bekommen, in     der er nochmals sein erreichten Punktestand sehen kann. Danach wird die abgespeicherte Bestenliste angezeigt und der Benutzer wird gefragt, ob er nochmals         spielen möchte.
 
-* Spielmechanik:
-Während dem Spiel verarbeitet die Spielsteuerung die Eingabe des Benutzers, sodass die Schlangen auf dem Spielfeld in die gewünschte Richtung gesteuert werden kann. Dabei sollen  die einzelnen Elemente (Körperteile) der Schlange den vorherigen Elementen folgen, wie in einer Kette. Der Schlangenkopf gibt hierbei die Richtung der kompletten Schlangen vor.    Während des Spiels wird auch überprüft, ob der Schlangenkopf ein Teil der Schlange oder die Spielbegrenzung berührt.
-Fährt die Schlange über einen durch die Spielmechanik zufällig auf dem Spielfeld generierten Goody, so wird diese am Kopf um ein weiteres Element (Körperteil) erweitert und der     Punktestand des Spielers wird erhöht.
-
-  
-  ### 🖥️Visualisierung 
-   Michael Böckelen 
-  
   ### 🏆Rangliste 
-   Lukas Sellmaier  
+  ``` Lukas Sellmaier ```
+   
    In diesem Modul wird die Rangliste angelegt sowie ihre Funktionen und das Struct zur übergabe der Daten definiert.
-    * Es wird einen TextDatei angelegt, in welcher Zehn  Namen und ihre Punktestände gespeichert werden
-    * Zu Beginn enthält sie Zehn Platzhalter mit jeweils Null punkten
-    * Über eine Funktion kann man einen neuen Punktestand mit der Liste vergleichen und gegebenenfalls in diese aufnehmen
-    * Des weiteren wird hier ein Struct definiert mit dem die Daten anderen Funktionen zur verfügung gestellt werden können
-    
-  ### 🪲Debugging und Logging 
-   Michael Böckelen 
+   * Es wird einen TextDatei angelegt, in welcher Zehn  Namen und ihre Punktestände gespeichert werden
+   * Zu Beginn enthält sie Zehn Platzhalter mit jeweils Null punkten
+   * Über eine Funktion kann man einen neuen Punktestand mit der Liste vergleichen und gegebenenfalls in diese aufnehmen
+   * Des weiteren wird hier ein Struct definiert mit dem die Daten anderen Funktionen zur verfügung gestellt werden können
+
   
 ## ⌨️ Designspezifikation
  * Alle Funktionen sollten als `return` value den eigenen Fehler-Datentyp `Snake_ErrorType` verwenden, um Logging zu ermöglichen.
-   ### Eingabe
-       
-  
-   ### Spielmechanik
-        randomGoody();
-        void restart();
-  
-   ### Visualisierung
    
-   ### Der Super Strukt (Designed bei Michael)
-    
-    
+       
+### ⌨️Eingabe 
+ ``` Lukas Sellmaier ``` 
+ 
+ 
+  In diesem Modul werden die Drei Funktionene definiert welche die Eingabe über die Tastatur zu ermöglichen  
+   
+   <br/>
 
 
+```req_name(char* ptr)```
+
+- - - -
+
+```req_dir()```
+Diese Funktion dient zur Eingabe der Bewegungsrichtung über die Tasten ```W``` ```A``` ```S``` ```D``` .
+
+- - - -
+
+```req_any()```
+
+<br/>
+
+### 🏆Rangliste 
+
+``` Lukas Sellmaier ``` 
+
+
+ In diesem Modul wird eine ***Textdatei*** angelegt sowie Zwei ***Funktionen*** und das ***Struct*** zur übergabe der Daten definiert.
+ Beide Funktionen greifen auf ***Konstanten*** zu, welche die Parameter der Funktionene festlegen.
+
+
+- - - -
+
+#### Konstanten zum festlegen der Parameter:
+
+<br/>
+
+ + ``` NAME_MAX ```  _Maximale Länge der Namenseingabe **(inclusive /0)**_
+
+
+ + ``` NUM_ENTRY ```  _Anzahl der maximal in der Liste gespeicherten Elemente_
+
+
+ + ``` datei_pfad ``` _Adresse an der sich die Textdatei befindet_  
+      > Beispiel: ```#define datei_pfad "C:/Users/Lukas/Desktop/bestenliste.txt"```
+ 
+<br/>
+
+- - - -
+
+#### Beispiel für die Textdatei:
+
+<br/>
+
+[liste_beispiel.txt](https://github.com/boeckelm/SWEngProject/files/7449667/liste_beispiel.txt)
+
+Bei verwendung der Beispieldatei ist ``` NAME_MAX 11```  und ``` NUM_ENTRY 10```  festzulegen.
+
+<br/>
+
+- - - -
+
+#### Struktur zur übergabe der Daten:
+
+<br/>
+
+```
+    struct highscore {
+           char name[NAME_MAX];
+           int score;
+           }; 
+```
+
+ Mit dieser Struktur können alle Namen sowie die dazugehörigen Punktestände gleichzeitig in einem struct array gepeichert werde.
+ 
+> Beispiel: ```struct highescore testliste[NUM_ENTRY]```
+
+<br/>
+ 
+ - - - -
+ 
+ #### Funktionen der Bestenliste:
+ 
+ <br/>
+  
++ ```score_out (struct highscore* ptr)```
+  Diese Funktion füllt ein Array des Datentypen struct highscore mit den Werten aus der Textdatei.
+ 
+  + Beim Aufrufen wird der Funktion ein Zeiger auf ein  ```struct highescore``` Array übergeben
+  + Als erstes wird die Textdatei  mit der Adresse ``` datei_pfad ``` im readonly Modus geöffnet
+  + Anschließend werden in einer Schleife die einzelnen Namen und Punktestände aus der Textdatei gelsen und in das Array geschrieben
+  + Als letztes wird die Datei wieder geschlossen
+  
+  <br/>
+  <br/>
+  
++ ```score_up (int punkte, char* ptr)```
+  Diese Funktion Aktualisiert die Textdatei falls der übergeben Punktestand höher als das Letzte Element der Liste ist.
+ 
+  + Beim Aufruf wird der Funktion der Punktestand als ```INT``` sowie der Spielername als ```char``` Zeiger übergeben
+  + Als erstes wird ein ```struct highscore``` deklariert und mit der Funktion ```score_out``` initialiert
+  + Anschließend werden die Daten aus dem Array mit dem übergebenen Punktestand verglichen und gegebenenfalls Aktualisiert
+  + Wenn die Liste Aktualisiert wurde, wird die ***Textdatei*** im Schreibmodus geöffnet und die Namen sowie die Punktestände aus dem ***Struct Arrays*** in die Datei geschrieben
+  + Als letztes wird die ***Textdatei*** geschlossen 
+ 
