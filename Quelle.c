@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define NAME_MAX 11		//maximale l‰nge der namesneingabe +end NULL
+#define NAME_MAX 11		//maximale l√§nge der namesneingabe +end NULL
 #define NUM_ENTRY 10	//anzahl der gespeicherten ergebnisse in bestenliste
 #define datei_pfad "C:/Users/Lukas/Desktop/bestenliste.txt"
 
@@ -14,11 +14,11 @@ struct highscore {
 
 /*
 (error code?) req_name(char* name);
-//auf maximale l‰nge pr¸fen , 10 zeichen
-//auf sonderzeichen pr¸fen , nur abc...ABC...123 (klein/groﬂ/zahlen)
+//auf maximale l√§nge pr√ºfen , 10 zeichen
+//auf sonderzeichen pr√ºfen , nur abc...ABC...123 (klein/gro√ü/zahlen)
 //abfrage ob name schon in Besten-liste vorhanden
 	aufruf von #score_out 
-	¸bergebene Daten(Namen) mit eingabe vergleichen
+	√ºbergebene Daten(Namen) mit eingabe vergleichen
 	ggf. (name schon vorhanden) erneuter funktionsaufruf/fehlermeldung?
 */
 req_name(char* ptr){
@@ -41,22 +41,22 @@ req_any(void)
 beliebige tastatureingabe abwarten
 */
 req_any(){
-getch();	//keine erkl‰rung notwendig
+getch();	//keine erkl√§rung notwendig
 }
 
 
 /*
 (error code?) score_out(zeiger auf datenstructur);	//output 
 (datei anlegen)
-//ˆffnet die Bestenliste datei(fehler¸berpr¸fung)
+//√∂ffnet die Bestenliste datei(fehler√ºberpr√ºfung)
 
 //kopiert den inhalt in datenstructur (datenstructur definieren!)
 
-//schlieﬂst datei(fehler¸berpr¸fung)
+//schlie√üst datei(fehler√ºberpr√ºfung)
 */
 score_out(struct highscore* ptr) {
 
-	char string[NAME_MAX] = "";	//puffer f¸r funktion atoi()
+	char string[NAME_MAX] = "";	//puffer f√ºr funktion atoi()
 
 	FILE* fp = fopen(datei_pfad, "r");
 	if (fp == NULL) {
@@ -79,17 +79,17 @@ score_out(struct highscore* ptr) {
 
 /*
 (error code?) score_up(int score,char*name);	//update
-//der funktion wird der spielername und endpunktestand ¸bergeben
+//der funktion wird der spielername und endpunktestand √ºbergeben
 
 //ruft  #score_output auf
 
 //vergleicht die Tabellendaten und aktualisiert. sie ggf.
 
-//speicher aktualisierte liste in der Datei (ˆffnen->¸berschreiben->schlieﬂen,÷/S pr¸fen!)
+//speicher aktualisierte liste in der Datei (√∂ffnen->√ºberschreiben->schlie√üen,√ñ/S pr√ºfen!)
 */
 score_up(int punkte, char* ptr) {
 
-	char string[NAME_MAX]="";	//string f¸r strcpy funktion
+	char string[NAME_MAX]="";	//string f√ºr strcpy funktion
 	struct highscore sc[NUM_ENTRY];
 	score_out(sc);
 
@@ -98,7 +98,7 @@ score_up(int punkte, char* ptr) {
 		string[i] = ptr[i];
 	}
 
-	for (int i = 0; i < NUM_ENTRY; i++) {	//vergleicht ¸bergeben punktestand mit liste
+	for (int i = 0; i < NUM_ENTRY; i++) {	//vergleicht √ºbergeben punktestand mit liste
 		if (punkte > (sc + i)->score) {
 			for (int j = NUM_ENTRY - 1; j >= i + 1; j--) {
 				strcpy(sc[j].name, sc[j - 1].name);
@@ -131,7 +131,8 @@ score_up(int punkte, char* ptr) {
 
 int main()
 {
-
+	//------------test ausgabe-----------
+	
 	char testname[NAME_MAX] = "testtest2 ";
 	int testscore = 550;
 	
@@ -142,9 +143,6 @@ int main()
 	score_out(sc);
 
 	
-	
-
-	//------------test ausgabe-----------
 	for (int i = 0; i < NUM_ENTRY; i++) {		
 		puts((sc + i)->name);
 		printf("%i\n\n", (sc + i)->score);
