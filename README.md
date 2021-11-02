@@ -63,21 +63,64 @@ Das komplette Spiel soll in C geschrieben und in der Windows Konsole ausführbar
  ``` Lukas Sellmaier ``` 
  
  
-  In diesem Modul werden die Drei Funktionene definiert welche die Eingabe über die Tastatur zu ermöglichen  
+  In diesem Modul werden die Drei Funktionene definiert welche die Eingabe über die Tastatur ermöglichen. 
+  Es Wird die definierte Konstante ```NAME_MAX``` verwendet ***(siehe Bestenliste)***.
+  
    
    <br/>
 
+- - - -
 
 ```req_name(char* ptr)```
+
+Diese Funktion dient zur Eingabe des Spielernamens über die Tastatur.
+
+<br/>
+
+  + Beim Aufruf der Funktion wird ihr ein Zeiger auf einen String übergeben
+  + Als erstes wird ein weitere String mit der Länge ```NAME_MAX``` deklariert
+  + Über die Funktion ```fgets()``` wird ein String mit ```NAME_MAX``` Elementen über stdin eingelesen und in den zuvor deklarierten String geschrieben
+  + Zuletz wird der String noch über den übergebene Zeiger in einen String kopiert
+ 
+<br/>
 
 - - - -
 
 ```req_dir()```
-Diese Funktion dient zur Eingabe der Bewegungsrichtung über die Tasten ```W``` ```A``` ```S``` ```D``` .
+
+Diese Funktion dient zur Eingabe der Bewegungsrichtung über die Tasten ```w``` ```a``` ```s``` ```d``` .
+
+  + Beim Aufruf der Funktion wird ihr ein Zeiger auf einen ```INT``` Wert übergeben
+  + Als erstes wird ein einzeler ```char``` über die funktion ```_getch()``` eingelesen
+  + Dieser wird nun in einem Switch-Case verglichen welche der Tasten w,a,s,d gedrückt wurden
+  + Die Jeweiligen Anweisungsblöcke schreiben nun über den übergebenen Zeiger einen Wert von 0 bis 3 in eine ```INT``` Variable
+  + Es wird dabei das ```enum stearing{}``` benutzt 
+ 
+ <br/>
+ 
+```
+enum stearing {
+    up,   //w = 0
+    down, //s = 1
+    left, //a = 2
+    right //d = 3
+}; 
+```
+
+<br/>
 
 - - - -
+ 
+<br/>
 
 ```req_any()```
+
+
+In Dieser Funktione wird nur auf eine beliebige Tastaureingabe über die Funktion ```_getch()``` gewartet.
+
+<br/>
+
+- - - -
 
 <br/>
 
@@ -144,7 +187,8 @@ Bei verwendung der Beispieldatei ist ``` NAME_MAX 11```  und ``` NUM_ENTRY 10```
  
  <br/>
   
-+ ```score_out (struct highscore* ptr)```
+ ```score_out (struct highscore* ptr)```
+ 
   Diese Funktion füllt ein Array des Datentypen struct highscore mit den Werten aus der Textdatei.
  
   + Beim Aufrufen wird der Funktion ein Zeiger auf ein  ```struct highescore``` Array übergeben
@@ -155,7 +199,8 @@ Bei verwendung der Beispieldatei ist ``` NAME_MAX 11```  und ``` NUM_ENTRY 10```
   <br/>
   <br/>
   
-+ ```score_up (int punkte, char* ptr)```
+ ```score_up (int punkte, char* ptr)```
+ 
   Diese Funktion Aktualisiert die Textdatei falls der übergeben Punktestand höher als das Letzte Element der Liste ist.
  
   + Beim Aufruf wird der Funktion der Punktestand als ```INT``` sowie der Spielername als ```char``` Zeiger übergeben
