@@ -1,6 +1,8 @@
 ﻿#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <conio.h>
+#include <windows.h>
 
 #define NAME_MAX 11		//maximale länge der namesneingabe +end NULL
 #define NUM_ENTRY 10	//anzahl der gespeicherten ergebnisse in bestenliste
@@ -31,16 +33,25 @@ req_name(char* ptr) {
 }
 
 
-req_dir(int* ptr) {
+req_dir(int* ptr, float t) {	//benötigt #include <conio.h> und  #include <windows.h>
 
-	char a = _getch();	//Puffer für _getch()
+	time_t t0 = time(NULL);//Startzeit
+	do
+	{
+		if (_kbhit())//hier wird abgefragt, ob der Nutzer eine Taste gedrückt hat
+		{
+			char a = _getch();	//eigentliche Tastaturabfrage
 
-	switch (a) {		//switch.case für die eingaben w,a,s,d
-	case 'w':	*ptr = up; break;		//0
-	case 's':	*ptr = down; break;		//1
-	case 'a':	*ptr = left; break;		//2
-	case 'd':	*ptr = right;			//3
-	}
+			switch (a) {		//switch.case für die eingaben w,a,s,d
+			case 'w':	*ptr = up; break;		//0
+			case 's':	*ptr = down; break;		//1
+			case 'a':	*ptr = left; break;		//2
+			case 'd':	*ptr = right; break;   	//3
+			}
+
+		}
+		Sleep(10);  //10ms Pause um den Prozessor nicht zu überlasten
+	} while ((time(NULL) - t0) < t);//Abbruch, wenn Zeit überschritten
 
 }
 
