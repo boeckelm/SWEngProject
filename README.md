@@ -84,9 +84,9 @@ Des Weiteren wird die Länge der Schlange in einer Globalen Variable gespeichert
 ```c
      	int s_length = 1;  //Schlangenlänge
 ```      
-Diese ist zu Beginn des Spiels 1 und kann durch aufsammeln von Goodys im Laufe des Spiels erhöht werden. Beim einsammel eines Goodys wird die länge der Schlange durch die nachfolgend beschriebene `eat()` Funktion erhöht.
+Diese ist zu Beginn des Spiels 1 und kann durch Aufsammeln von Goodys im Laufe des Spiels erhöht werden. Beim Einsammeln eines Goodys wird die Länge der Schlange durch die nachfolgend beschriebene 'eat()' Funktion erhöht.
 
- Auch der Goody wird auf dem Spielfeld dem Spielfeld angezeigt. Damit er angezeigt und von der Schlange gefressen werden kann wird seine Position benötigt. Diese wird in der Globalen Variable
+Auch der Goody wird auf dem Spielfeld angezeigt. Damit er angezeigt und von der Schlange gefressen werden kann, wird seine Position benötigt. Diese wird in der globalen Variable.
 ```c 
     	snakepart Goody;  //Goody Position
 ```      
@@ -94,8 +94,8 @@ Goody vom Typ snakepart gespeichert und wird von der randomGoody() Funktion init
 ```c
     	int Score = 0;
 ```      
-Die Ganzzahl Variable Score gibt den aktuellen Punktestand wieder. Zu beginn des Spiels wird dieser auf 0 gesetzt. Wird ein Goody eingesammelt wird durch die eat() Funktion der Score um 10 Pkt. erhöht. 
- Zu besseren Verständnis des Steuereingangs wir ein weitere Typ für die Steuerung des Schlangenkopfs definiert.
+Die Ganzzahl Variable Score gibt den aktuellen Punktestand wieder. Zu Beginn des Spiels wird dieser auf 0 gesetzt. Wird ein Goody eingesammelt wird durch die eat() Funktion der Score um 10 Pkt. erhöht.
+Zu besseren Verständnis des Steuereingangs wird ein weiterer Typ für die Steuerung des Schlangenkopfs definiert.
  ```c
     	typedef enum{
         	up,  //W oder  ↑
@@ -104,11 +104,11 @@ Die Ganzzahl Variable Score gibt den aktuellen Punktestand wieder. Zu beginn des
        		right //D →
      	}stearing;
 ```
-Die Variable laststearing von dem neuen Typ stearing gibt an, welche Taste zu Letzt gedrückt wurde. Diese wird durch das Eingabemodul verändert.
+Die Variable laststearing von dem neuen Typ stearing gibt an, welche Taste zuletzt gedrückt wurde. Diese wird durch das Eingabemodul verändert..
 ```c
 	stearing last_stearing;
 ```
-Für den Rückgabewert der checkNextStep-Funktion wird ein Datentyp true oder false definiert. Diese gibt an, ob der nächste Zug zum Spielende oder zum verfahren der Schlange führt.
+Für den Rückgabewert der checkNextStep-Funktion wird ein Datentyp true oder false definiert. Diese gibt an, ob der nächste Zug zum Spielende oder zum Verfahren der Schlange führt.
 ```c
        	typedef enum{
         	false;
@@ -120,7 +120,7 @@ Für den Rückgabewert der checkNextStep-Funktion wird ein Datentyp true oder fa
 
 ***Initialisierung der wichtigesten Variablen*** <br/>
 
-Initialisiert zu beginn jedes Spiels die Variablen `score = 0`, `snake` alle Elemente außer Snake[0] mit NULL, `s_length = 1`, `soody` mit random Position und startet Startfrequenz des Spiels.
+Initialisiert zu Beginn jedes Spiels die Variablen 'score = 0', 'snake' alle Elemente außer Snake[0] mit NULL, 's_length = 1', 'soody' mit random Position und startet Startfrequenz des Spiels.
 ```c
 void init(); 
 ``` 
@@ -132,25 +132,25 @@ void restart();
 ``` 
 
 ***Neuer Goody*** <br/>
-Erzeugt eine zufällig generierte Position für die Goodys. Überprüft beim erzeugen der Position ob das Feld schon belegt ist, wenn nicht wird die Goody-Position zurückgegeben.
+Erzeugt eine zufällig generierte Position für die Goodys. Überprüft beim Erzeugen der Position, ob das Feld schon belegt ist, wenn nicht, wird die Goody-Position zurückgegeben.
 ```c
 snakepart randomGoody();
 ``` 
 
 ***Spielgeschwindigkeit*** <br/>
-Die Delay-Funktion ist Taktgeber des Spiels, wird sie aufgerufen wird die angegebene Zeit gewartet. Die Wartezeit wird als Übergabeparameter in Millisekunden und als Ganzzahl angegeben. Zu Beginn soll die Wartezeit 500ms betragen.
+Die Delay-Funktion ist Taktgeber des Spiels, wird sie aufgerufen, wird die angegebene Zeit gewartet. Die Wartezeit wird als Übergabeparameter in Millisekunden und als Ganzzahl angegeben. Zu Beginn soll die Wartezeit 500ms betragen.
  ```c
  void wait(int Waiting_Time_ms);
  ``` 
 
 ***Wenn Goody aufgesammlt wird*** <br/>
-Überprüft ob Schlangenkopf sich auf Goody bewegt, wenn ja erhöht die Funktion die Schlangenlänge um 1, den Score um 10 Pkt. und eine neue zufällige Goody-Position wird erzeugt. Benötigt die nächste Position vom Schlangenkopf als Snakepart Datentyp. 
+Überprüft, ob Schlangenkopf sich auf Goody bewegt, wenn ja, erhöht die Funktion die Schlangenlänge um 1, den Score um 10 Pkt. und eine neue zufällige Goody-Position wird erzeugt. Benötigt die nächste Position vom Schlangenkopf als Snakepart Pointer.
 ```c
 void eat(snakepart *next);
 ```
 
 ***Überprüfung des nächsten Schritts*** <br/>
-Überprüft ob die nächste Position möglich ist, also ob kein Hinderniss berührt wird. Als Übergabeparameter wird die nächste Position des Schlangenkopfts als Snakepart Datentyp benötigt.
+Überprüft, ob die nächste Position möglich ist, also ob kein Hindernis berührt wird. Als Übergabeparameter wird die nächste Position des Schlangenkopfs als Snakepart Datentyp benötigt.
 ```c
  boolean checkNextStep(snakepart *next); 
  
@@ -160,7 +160,7 @@ void eat(snakepart *next);
 ```
 
 ***Bewegung der Schlange*** <br/>
-Schiebt die Schlange auf die neue Position. Dazu wird die Position des Schlangenkopfs im Array um 1 Element weiter nach hinten geschoben. Die neue X- und Y-Position wird ind das 0.Element des Arrays, also den Schlangenkopf geschrieben. Als Übergabeparameter wird die nächste Position des Schlangenkopfts als Snakepart Datentyp benötigt.
+Schiebt die Schlange auf die neue Position. Dazu wird die Position des Schlangenkopfs im Array um 1 Element weiter nach hinten geschoben. Die neue X- und Y-Position wird in das 0. Element des Arrays, also den Schlangenkopf geschrieben. Als Übergabeparameter wird die nächste Position des Schlangenkopfs als snakepart Pointer benötigt.
 ```c
 void move(snakepart *next); 
 ``` 
