@@ -47,10 +47,10 @@ Das komplette Spiel soll in C geschrieben und in der Windows Konsole ausführbar
 Dieses Modul ist für sämtliche Ausgaben auf dem Terminal verantwortlich und stellt entsprechende Schnittstellen zur Verfügung.
 
 * **Hauptaufgabe: Visualisierung des Spiels**  
-Bei der Visualisierung des Spiels wird rein auf ASCII-Zeichen zurückgegriffen.  NEU SCHREIBEN!!
-Zu Anfang des Spiels soll das Spielfeld im Terminal initalisiert werden. Dabei wird die Anzeige gecleared und die Ränder des Spielfeldes ausgegeben, außerdem werden im Verlauf die sich verändernden Positionsdaten der Schlange und des Goodys verarbeitet und dargestellt. Bei der Visualisierung des Spiels wird dabei rein auf farbige ASCII-Zeichen zurückgegriffen
+Bei der Visualisierung des Spiels soll rein auf ASCII-Zeichen zurückgegriffen werden. 
+Zu Anfang des Spiels soll das Spielfeld im Terminal initalisiert werden. Dabei wird die Anzeige zuerst gecleared und die Ränder des Spielfeldes ausgegeben. Anschließend soll bei einem Positionsupdate die Schlange am Spielfeld gezeichnet werden und jeweils nur die veränderten Bestandteile neu gezeichnet werden.
 
-* Möglichkeit zur einfachen Textausgabe während des Spiels, zum Beispiel für Debug-Daten
+* Möglichkeit zur einfachen Textausgabe während des Spiels, zum Beispiel für Debug-Daten. Am besten wird hier einfach der Text-Cursor an die alte Stelle zurückgesetzt 
 * Formatierte Ausgabe des Ranglisten-Screens mit Option eines Beschreibungstextes
 
   
@@ -79,7 +79,7 @@ Diese Modul ist für sämtliche Ausgaben auf dem Terminal verantwortlich und ste
 
 **Initialsierung des Spielbildschrims**  
 ```c
-Snake_DBG_t Snake_VS_init(unsigned short feldgroesse_x, unsigned feldgroesse_y);
+Snake_DBG_t Snake_VS_init(unsigned short feldgroesse_x, unsigned short feldgroesse_y);
 ```
 * Zu Anfang des Spiels soll das Spielfeld mit den übergebenen Feldgröße-Parametern initialisiert werden und alle anderen bestehenden Ausgaben gelöscht werden. 
 Die Darstellung erfolgt mittels fest definierter ASCII-Zeichen. Desweiteren wird der formatierte High-Score-Counter dann angezeigt.
@@ -89,10 +89,10 @@ Die Darstellung erfolgt mittels fest definierter ASCII-Zeichen. Desweiteren wird
 ```c
 Snake_DBG_t Snake_VS_Update (Snake_Vektor_t snake [ ], unsigned short Anzahl, Snake_vektor_t goody, unsigned short score);
 ``` 
-* Während des Spiels müssen die Positionen der Elemente laufend angepasst werden. Dafür gibt es eine Update-Funktion, der die Koordinaten des **Schlangenkopfes, des Schlangenendes und die der Knickstellen**, sowie die des Goodys, übergeben werden. Der Koordinatenursprung befindet sich dabei immer unten links. Zur besseren Vorstellung ein Bild:  
+* Während des Spiels müssen die Positionen der Elemente laufend angepasst werden. Dafür gibt es eine Update-Funktion, der mittels Array alle Positionsdaten der Schlange sowie die Goody-Koordinate übergeben werden. Außerdem wird die Anzahl der Schlangenstücke sowie der aktuelle Highscore übergeben. Der Koordinatenursprung befindet sich dabei immer unten links. Zur besseren Vorstellung ein Bild:  
 
-* <img align="center" width="541" height="210" src="https://abload.de/img/snake_2plk7l.png"> 
-* Für die einzelnen Koordinaten soll der Struct `Snake_Vektor_t`, der je eine ganzzahlige x und y Variabe besitzt, verwendet werden: -> Eig. in Spielfunktion?
+* <img align="center" width="541" height="210" src="https://abload.de/img/68747470733a2f2f61626udj3v.png"> 
+* Für die einzelnen Koordinaten soll der Struct `Snake_Vektor_t` oder der im Hauptteil definierten Struct, der je eine ganzzahlige x und y Variabe besitzt, verwendet werden.
 
 ```c
 typedef struct {
@@ -100,9 +100,8 @@ typedef struct {
     unsigned short y;
 } Snake_Vektor_t;
 ```
-
-* Das Update an sich erfolgt dann mit der Übergabe der einzelnen Schlangen-Koordinaten in einem Array obigen Datentyps zusammen mit der Anzahl jener Elemente. Außerdem wird noch eine Koordinate für das Goody, sowie der momentane Highscore übergeben. 
 Intern wird der Cursor mittels der in `"Windows.h"` definierten `SetConsoleCursorPosition()`-Funktion an jene Koordinate gesetzt und ein entsprechendes Zeichen gesetzt.
+Anschließend wird dieser wieder unter das Spielfeld gesetzt, damit Ausgaben das Spielfeld nicht zerstören.
 <br><br/>
 
 **Beenden des Spiels** 
@@ -113,10 +112,8 @@ Snake_DBG_t Snake_VS_end(void);
 <br><br/>
 
 **Ausgabe eines Textes** 
-```c
-Snake_DBG_t Snake_VS_printf(char* text, ...);
-``` 
-* Zur reinen Textausgabe in gewohnter Format-String-Form soll diese Funktion wie die `printf()`-Funktion benutzt werden. Die Ausgabe erfolgt dann passend entweder neben dem Spielfeld oder wie  gewohnt. Intern wird hierbei der Cursur mit einem Offset versehen und die printf()-Funktion aufgerufen. 
+
+* Zur reinen Textausgabe kann wie gewohnt die printf()-Funktion o.Ä. beutzt werden. Intern wird der Text-Cursor immer unter das Spielfeld gesetzt, sodass keine Komplikationen auftreten können.
 <br><br/>  
 
 **Darstellung der Rangliste** 
@@ -130,11 +127,11 @@ Snake_DBG_t Snake_VS_Rangliste(Snake_Rangliste_t [10], char* text); //Placeholde
   ` Michael Böckelen`  
 Dieses Modul stellt Schnittstellen zur besseren Fehlerdokumentation zur Verfügung. 
 **Einheitlicher und auswertbarer Rückgabewert**
-* Um einen **einheitlichen und auswertbaren Rückgabewert** zur Verfügung zu stellen, wird die Datenstrukur `Snake_DBG_t` erstellt. Diese beinhaltet einen ganzzahligen Statuscode, sowie einen optionalen String zur Fehlerbeschreibung. 
+* Um einen **einheitlichen und auswertbaren Rückgabewert** zur Verfügung zu stellen, wird die Datenstrukur `Snake_DBG_t` erstellt. Diese beinhaltet einen ganzzahligen Statuscode, einen optionalen String zur Fehlerbeschreibung und einen Zeitstempel. 
 * **Zur Vereinfachung des Debug-Verfahrens muss bei der Implementation nur zwischen zwei Funktionen unterschieden werden, die während `return` aufgerufen werden.**
 
 ```c
-Snake_DBG_t Snake_DBG_Success(void); //Bei Erfolg
+Snake_DBG_t Snake_DBG_Success("Alles gut"); //Bei Erfolg
 ``` 
 ```c
 Snake_DBG_t Snake_DBG_Error("Fehlerbeschreibung"); //Bei einem Fehler
@@ -144,14 +141,27 @@ Snake_DBG_t Snake_DBG_Error("Fehlerbeschreibung"); //Bei einem Fehler
 <Details>
 <br><br/>  
   
-* Die Struktur ist wie folgt definiert: -> TODO: Erläuterung der verketten Liste aufgrund der Lebenszeit der Variablen
-```c
-typedef struct 
-    Snake_status status;
-    char* error = 0;
-}Snake_DBG_t;
-``` 
+  * Der Rückgabewert einer solchen Funktion ist immer ein Pointer auf ein Listenelement, in das die Fehlermeldung der Status, und der Zeitstempel geschrieben wird.
+  
+ * Die Debug-Datenstruktur wurde dabei als rückwärts-verkettete Liste ausgeführt, bei der der Anker global definiert ist und sich nicht ändert.
+  Dieser Anker repräsentiert den Default-Success-Case, der bei einem Erfolg und keiner Meldung zurückgegeben wird. In allen anderen Fällen wird ein neuer Listeneintrag erstellt   und direkt hinter den Anker gesetzt, damit Fehlermeldungen der Zeit nach geordnet abgelegt werden.
+  
+  
+  
+  * <img align="center" width="567" height="370" src="https://abload.de/img/designrrkk0.png"> 
+  
 
+
+```c
+struct Snake_DBG_struct{	//Struct eines Debug-Eintrages in einer Verketteten Liste
+	time_t timestamp;		//Zeitstempel
+	Snake_status status;	//Status-Code
+	char* error;			//Fehlermeldung
+
+	struct Snake_DBG_struct* next; //für verkettete List
+};
+``` 
+Zur schnellen Auswertung muss nur der Status-Code kontrolliert werden.
 Als Statuscode werden die Enums `SNAKE_SUCCESS` oder `SNAKE_FAIL` verwendet werden.  
  
 ```c
@@ -177,17 +187,22 @@ else{
 <br><br/>
 **Ausgabe und Abspeichern von allgemeinen Debugdaten**
 ```c
-Snake_DBG_t Snake_DGB_General("Hier könnte ihr Fehler stehen");
+Snake_DBG_t Snake_DGB_General(char* meldung, Snake_status status);
 ``` 
-* Falls es außerhalb des Funktionendes gewünscht sein Debugmeldungen auszugeben oder zu speichern, soll diese Funktion samt Debug-Beschreibung als Parameter aufgerufen werden.
--> TODO: mögliches Runtime Problem, checken!
+* Falls es außerhalb des Funktionendes gewünscht sein Debugmeldungen auszugeben oder zu speichern, soll diese Funktion samt Debug-Beschreibung und Statusals Parameter aufgerufen werden.
 
 **Schreiben der Debugdaten in eine Datei**
 ```c
 Snake_DBG_t Snake_DGB_SAVE(void);
 ``` 
 * Diese Funktion sollte vor einmalig vor Programmende aufgerufen werden, um alle Debugdaten samt Zeitstempel in eine Datei zu schreiben.
-    
+
+**Löschen der Liste**
+```c
+void Snake_DBG_Freigeben(void);
+
+``` 
+* Diese Funktion muss zum Ende des Programms aufgerufen werden, um den Speicher wieder freizugeben.    
     
 
 
