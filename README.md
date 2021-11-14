@@ -146,13 +146,13 @@ Die Delay-Funktion ist Taktgeber des Spiels, wird sie aufgerufen wird die angege
 ***Wenn Goody aufgesammlt wird*** <br/>
 Überprüft ob Schlangenkopf sich auf Goody bewegt, wenn ja erhöht die Funktion die Schlangenlänge um 1, den Score um 10 Pkt. und eine neue zufällige Goody-Position wird erzeugt. Benötigt die nächste Position vom Schlangenkopf als Snakepart Datentyp. 
 ```c
-void eat(snakepart next);
+void eat(snakepart *next);
 ```
 
 ***Überprüfung des nächsten Schritts*** <br/>
 Überprüft ob die nächste Position möglich ist, also ob kein Hinderniss berührt wird. Als Übergabeparameter wird die nächste Position des Schlangenkopfts als Snakepart Datentyp benötigt.
 ```c
- boolean checkNextStep(snakepart next); 
+ boolean checkNextStep(snakepart *next); 
  
   //false : Hindernis wird berührt 
   //true : Hindernis wird nicht berührt
@@ -162,7 +162,7 @@ void eat(snakepart next);
 ***Bewegung der Schlange*** <br/>
 Schiebt die Schlange auf die neue Position. Dazu wird die Position des Schlangenkopfs im Array um 1 Element weiter nach hinten geschoben. Die neue X- und Y-Position wird ind das 0.Element des Arrays, also den Schlangenkopf geschrieben. Als Übergabeparameter wird die nächste Position des Schlangenkopfts als Snakepart Datentyp benötigt.
 ```c
-void move(snakepart next); 
+void move(snakepart *next); 
 ``` 
 
 ***Spielablauf*** <br/>
