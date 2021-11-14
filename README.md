@@ -494,7 +494,7 @@ else{
 ```c
 Snake_DBG_t Snake_DGB_General(char* meldung, Snake_status status);
 ``` 
-* Falls es außerhalb des Funktionendes gewünscht sein Debugmeldungen auszugeben oder zu speichern, soll diese Funktion samt Debug-Beschreibung und Statusals Parameter aufgerufen werden.
+* Falls es außerhalb des Funktionendes gewünscht sein sollte Debugmeldungen auszugeben oder zu speichern, soll diese Funktion samt Debug-Beschreibung und Status als Parameter aufgerufen werden.
 
 **Schreiben der Debugdaten in eine Datei**
 ```c
