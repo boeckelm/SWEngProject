@@ -1,0 +1,4 @@
+﻿  eingabe.c
+C:\Users\Tim\source\repos\Snake\Snake\eingabe.c(13,1): warning C4005: "_CRT_SECURE_NO_WARNINGS": Makro-Neudefinition
+C:\Users\Tim\source\repos\Snake\Snake\eingabe.c : message : Siehe vorherige Definition von "_CRT_SECURE_NO_WARNINGS"
+  Snake.vcxproj -> C:\Users\Tim\source\repos\Snake\Debug\Snake.exe
