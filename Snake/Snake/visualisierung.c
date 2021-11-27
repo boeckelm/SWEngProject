@@ -5,7 +5,7 @@
  * @version 1.0.0
  *
  * @par
- * COPYRIGHT NOTICE: (c) 2021 Michael Böckelen, Hochschule Landshut.  All rights reserved.
+ * COPYRIGHT NOTICE: (c) 2021 Michael BÃ¶ckelen, Hochschule Landshut.  All rights reserved.
  */
 
 #define _CRT_SECURE_NO_WARNINGS
@@ -23,10 +23,10 @@
 #ifdef _WIN32
 #include <conio.h>
 #include <windows.h>
-#include <Windows.h> //Manches funktioniert nur bei großem bzw kleinem w, warum auch immer
+#include <Windows.h> //Manches funktioniert nur bei groÃŸem bzw kleinem w, warum auch immer
 #endif
 
-static unsigned short feld_y, first_update = 1; //Globale Variablen zum Setzen der Feldgröße, sowie zu Speichern, ob die Update-Funktion bereits aufgerufen wurde
+static unsigned short feld_y, first_update = 1; //Globale Variablen zum Setzen der FeldgrÃ¶ÃŸe, sowie zu Speichern, ob die Update-Funktion bereits aufgerufen wurde
 
 
 Snake_DBG_t Snake_VS_init(unsigned short feldgroesse_x, unsigned short feldgroesse_y) {
@@ -34,11 +34,11 @@ Snake_DBG_t Snake_VS_init(unsigned short feldgroesse_x, unsigned short feldgroes
     system("cls");
 
     //Setzen der globalen Variablen
-    feld_y = feldgroesse_y; //Feldhöhe, damit die Cursor-Funktion den Offset zwischen unserem Nullpunkt (unten links) dem der Windows-Konsole (oben links) bestimmen kann. 
+    feld_y = feldgroesse_y; //FeldhÃ¶he, damit die Cursor-Funktion den Offset zwischen unserem Nullpunkt (unten links) dem der Windows-Konsole (oben links) bestimmen kann. 
    
 
     //Zeichnen des Spielfeldrandes
-    for (unsigned short i = 0; i <= feldgroesse_x + 1; i++)//Werte 0 und breite+1 für die Ecken
+    for (unsigned short i = 0; i <= feldgroesse_x + 1; i++)//Werte 0 und breite+1 fÃ¼r die Ecken
     {
         Snake_VS_draw(i, 0, BARRIER); //oberer Rand
         Snake_VS_draw(i, feldgroesse_y + 1, BARRIER);//unterer Rand
@@ -51,31 +51,31 @@ Snake_DBG_t Snake_VS_init(unsigned short feldgroesse_x, unsigned short feldgroes
     
     for (unsigned short i = 0; i < NUM_ENTRY; i++) {
 
-        SetPosition(OFFSET_X + feldgroesse_x + 5, OFFSET_Y + i);
+        SetPosition(OFFSET_X + feldgroesse_x + 5, OFFSET_Y + i);    //Ausgabe der Bestenliste rechts neben dem Spielfeld
         printf("%d.\t%s \t %d", i + 1, score_temp[i].name, score_temp[i].score);
     }   
            
 
-    SetPosition(5, 1); //Cursor wieder über das Spielfeld setzen für die Score-Anzeige
+    SetPosition(5, 1); //Cursor wieder Ã¼ber das Spielfeld setzen fÃ¼r die Score-Anzeige
     printf("Score: ");
 
-    SetPosition(0, OFFSET_Y + feld_y + 5);  //Cursor unterhalb des Spielfeldes setzen, damit bei einer Textausgabe das Spielfeld nicht zerstört wird
+    SetPosition(0, OFFSET_Y + feld_y + 5);  //Cursor unterhalb des Spielfeldes setzen, damit bei einer Textausgabe das Spielfeld nicht zerstÃ¶rt wird
 
 
     return Snake_DBG_Success("Visualisation initiated");
 }
 
-Snake_DBG_t Snake_VS_Update(snakepart snake[], unsigned short Anzahl, snakepart goody, unsigned short score_count) {
+Snake_DBG_t Snake_VS_Update(snakepart snake[], unsigned short Anzahl, snakepart goody, unsigned short score_count) { //Update-Funktion, bei der mittels Algorithmus nur die verÃ¤nderten Elemente neu dargestellt werden
 
-    static unsigned short highest_element_count; //Variable zum Zwischenspeichern der Länge des letzten Updates
+    static unsigned short highest_element_count; //Variable zum Zwischenspeichern der LÃ¤nge des letzten Updates
     static snakepart last_goody, end; //Damit nicht immer das ganze Spielfeld neu dargestellt werden muss werden die Positionen des Schlangen-Endes und des Goodys zwischengespeichert
-    static COORD cursor; //Rücksprungposition für den Cursor, damit der Cursor nach dem Update wieder an die gleiche Position gestellt wird
+    static COORD cursor; //RÃ¼cksprungposition fÃ¼r den Cursor, damit der Cursor nach dem Update wieder an die gleiche Position gestellt wird
 
     cursor = GetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE)); //Hole aktuelle Cursor-Position (Konsolen-Cursor)
 
-    if (first_update && Anzahl) {   //erstes Update, alle Schlangenteile müssen dargestellt werden
+    if (first_update && Anzahl) {   //erstes Update, alle Schlangenteile mÃ¼ssen dargestellt werden
 
-        highest_element_count = Anzahl; //Mindestlänge, wichtig um zu wissen ob Schlange verlängert wurde
+        highest_element_count = Anzahl; //MindestlÃ¤nge, wichtig um zu wissen ob Schlange verlÃ¤ngert wurde
         Snake_VS_draw_Vektor(snake[0], HEAD); //Erstes Element ist immer der Kopf
         Snake_VS_draw_Vektor(goody, GOODY); //Goody wird dargestellt
 
@@ -93,13 +93,13 @@ Snake_DBG_t Snake_VS_Update(snakepart snake[], unsigned short Anzahl, snakepart 
 
     }
 
-    else { //Schlange existiert bereits auf Bildschirm, nur geänderte Elemente werden dargestellt
+    else { //Schlange existiert bereits auf Bildschirm, nur geÃ¤nderte Elemente werden dargestellt
 
-        Snake_VS_draw_Vektor(snake[0], HEAD); //Kopf verändert immer Position
+        Snake_VS_draw_Vektor(snake[0], HEAD); //Kopf verÃ¤ndert immer Position
 
-        if (Anzahl > 1) Snake_VS_draw_Vektor(snake[1], BODY); //Aus alter Kopfstelle wird Schlangenkörper, falls nur der Kopf exisitert nicht
+        if (Anzahl > 1) Snake_VS_draw_Vektor(snake[1], BODY); //Aus alter Kopfstelle wird SchlangenkÃ¶rper, falls nur der Kopf exisitert nicht
 
-        if (Anzahl == highest_element_count) {  //Schlange wurde nicht länger
+        if (Anzahl == highest_element_count) {  //Schlange wurde nicht lÃ¤nger
 
             Snake_VS_draw_Vektor(end, BLANK); //Altes Schlangenende wird wieder frei
 
@@ -107,32 +107,32 @@ Snake_DBG_t Snake_VS_Update(snakepart snake[], unsigned short Anzahl, snakepart 
             end.pos_Y = snake[Anzahl - 1].pos_Y;
         }
         else {
-            highest_element_count = Anzahl; //Schlange wurde länger, Ende bleibt also bestehen, da neues Teil am Kopf eingefügt wird
+            highest_element_count = Anzahl; //Schlange wurde lÃ¤nger, Ende bleibt also bestehen, da neues Teil am Kopf eingefÃ¼gt wird
         }
 
-       //if(last_goody.pos_X != goody.pos_X || last_goody.pos_Y != goody.pos_X){
+       if(last_goody.pos_X != goody.pos_X || last_goody.pos_Y != goody.pos_X){ //Falls  Goody-Position verÃ¤ndert neu darstellen
             
-        last_goody.pos_X = goody.pos_X; //Zwischenspeichern der Goody-Position
-        last_goody.pos_Y = goody.pos_Y;
-        Snake_VS_draw_Vektor(goody, GOODY); //Goody wird dargestellt
+            last_goody.pos_X = goody.pos_X; //Zwischenspeichern der Goody-Position
+            last_goody.pos_Y = goody.pos_Y;
+            Snake_VS_draw_Vektor(goody, GOODY); //Goody wird neu dargestellt
 
-       // }
+       }
 
     }
 
-    SetPosition(7 + OFFSET_X, 1); //Cursor an Ausgabeposition für Score
+    SetPosition(7 + OFFSET_X, 1); //Cursor an Ausgabeposition fÃ¼r Score
     printf("%d", score_count); //Ausgabe Score
 
-    SetCurser_snake(cursor); //Rücksprung an ursprüngliche Cursor-Position
+    SetCurser_snake(cursor); //RÃ¼cksprung an ursprÃ¼ngliche Cursor-Position
 
     return Snake_DBG_Success(0);
 }
 
-Snake_DBG_t Snake_VS_Update_brute(snakepart snake[], unsigned short Anzahl, snakepart goody, unsigned short score_count) {  //
+Snake_DBG_t Snake_VS_Update_brute(snakepart snake[], unsigned short Anzahl, snakepart goody, unsigned short score_count) {  //Update-Funktion, bei dem pro Zug alle Elemente neu gezeichnet werden
 
-    static unsigned short highest_element_count; //Variable zum Zwischenspeichern der Länge des letzten Updates
+    static unsigned short highest_element_count; //Variable zum Zwischenspeichern der LÃ¤nge des letzten Updates
     static snakepart last_goody, end; //Damit nicht immer das ganze Spielfeld neu dargestellt werden muss werden die Positionen des Schlangen-Endes und des Goodys zwischengespeichert
-    static COORD cursor; //Rücksprungposition für den Cursor, damit der Cursor nach dem Update wieder an die gleiche Position gestellt wird
+    static COORD cursor; //RÃ¼cksprungposition fÃ¼r den Cursor, damit der Cursor nach dem Update wieder an die gleiche Position gestellt wird
     cursor = GetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE)); //Hole aktuelle Cursor-Position (Konsolen-Cursor)
 
     Snake_VS_end();
@@ -146,7 +146,7 @@ Snake_DBG_t Snake_VS_Update_brute(snakepart snake[], unsigned short Anzahl, snak
             Snake_VS_draw_Vektor(snake[i], BODY);
         }
 
-    SetPosition(7 + OFFSET_X, 1); //Cursor an Ausgabeposition für Score
+    SetPosition(7 + OFFSET_X, 1); //Cursor an Ausgabeposition fÃ¼r Score
     printf("%d", score_count); //Ausgabe Score
 
     return Snake_DBG_Success(0);
@@ -191,7 +191,7 @@ Snake_DBG_t Snake_VS_draw_Vektor(snakepart vec, Snake_VS_chars zeichen) {
     unsigned short x = vec.pos_X + OFFSET_X + 1; //Offset damit Spiel nicht am Rand klebt, + 1 wegen Rand
     unsigned short y = OFFSET_Y + feld_y - vec.pos_Y; //Invertierung der y-Koordinate, weil anderer Nullpunkt zwischen unserem System (unten links) und Windows(oben links)
 
-    SetPosition(x, y); //Cursor an übergebene Position
+    SetPosition(x, y); //Cursor an Ã¼bergebene Position
     putchar(zeichen);  //jeweiliges Zeichen aus Enum setzen
 
     return Snake_DBG_Success(0);
