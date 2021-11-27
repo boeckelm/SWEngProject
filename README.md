@@ -1,32 +1,4 @@
-## Software Engineering Projekt
-Git Repository zur einfacheren kooperativen Bearbeitung der Software Engineering Aufgabe aus dem Informatik III Modul des Elektro- Informationstechnik Studiengangs der Hochschule Landshut.
 
-Gruppenmitglieder: 
-* Michael Böckelen - s-mboeck@haw-landshut.de <img align="right" width="150" height="150" src="https://www.haw-landshut.de/fileadmin/Resources/Public/Images/landshut_logo.jpg">
-* Tim Gebhard - s-tgebha@haw-landshut.de
-* Lukas Sellmaier - s-lsell1@haw-landshut.de  
-
-<br><br />
-
-# Unser Spiel: Snake 🐍
-
-Als Projektziel wurde die Entwicklung des Computerspielklassikers Snake ausgewählt. Das Spiel überzeugt besonders durch seine einfache und intuitive Spielweise, bei gleichzeitig hohen möglichen Komplexitätsgraden in Teilmodulen sowie der nativen Spieloptik auf der Konsole.  
-
-## ⚙️ Anforderungsdefinition
-
-Zu Programmieren ist das  Spiel "Snake" mit den allgemein bekannten Regeln und Spielmechanismen. Bei Snake steuert der Spieler mit der Tastatur den Kopf einer Schlange, um möglichst viele Goodys einzusammeln. Durch Aufsammeln der Goodys wächst die Schlange um eine Längeneinheit und der Spieler erhält Punkte. Ziel des Spielers ist es eine möglichst hohe Punktzahl zu erreichen, ohne dass der Schlangenkopf ein Körperteil oder die Begrenzung des Spielfelds berührt. 
-
-Das komplette Spiel soll in C geschrieben und in der Windows Konsole ausführbar sein, sowie mittels Tastatureingabe zu steuern sein. Weitere elementare Anforderungen werden im Folgenden aufgeführt: 
-
-* Kollisionserkennung des Schlangenkopfes mit einem Element der Schlange oder mit den Spielfeldrändern
-* Ungepufferte Tastatureingabe zur sofortigen Ausführung 
-* Highscore-Counter, der je aufgenommenem Goody um eins erhöht wird
-* Highscore-Liste, die samt einzugebenden Namen in einem File gespeichert wird
-* Farbige Konsolenelemente für die Schlange, möglichst unterschiedliche Grüntöne für Kopf und Körper
-* Variabler Takt für unterschiedliche Spielgeschwindigkeiten
-* Zufälliges Erscheinen der Goodys
-* Nach Aufnahme eines Goodys wird Schlange am Kopf erweitert
-* Erweiterte Debugmöglichkeiten in Form eines separat abzuspeichernden Log-Files, der alle Spielzüge und mögliche Runtime-Fehler dokumentiert
 
 ## Software Engineering Projekt
 Git Repository zur einfacheren kooperativen Bearbeitung der Software Engineering Aufgabe aus dem Informatik III Modul des Elektro- Informationstechnik Studiengangs der Hochschule Landshut.
@@ -52,12 +24,11 @@ Das komplette Spiel soll in C geschrieben und in der Windows Konsole ausführbar
 * Ungepufferte Tastatureingabe zur sofortigen Ausführung 
 * Highscore-Counter, der je aufgenommenem Goody um eins erhöht wird
 * Highscore-Liste, die samt einzugebenden Namen in einem File gespeichert wird
-* Farbige Konsolenelemente für die Schlange, möglichst unterschiedliche Grüntöne für Kopf und Körper
+* ~~Farbige Konsolenelemente für die Schlange, möglichst unterschiedliche Grüntöne für Kopf und Körper~~
 * Variabler Takt für unterschiedliche Spielgeschwindigkeiten
 * Zufälliges Erscheinen der Goodys
 * Nach Aufnahme eines Goodys wird Schlange am Kopf erweitert
 * Erweiterte Debugmöglichkeiten in Form eines separat abzuspeichernden Log-Files, der alle Spielzüge und mögliche Runtime-Fehler dokumentiert
-* Darkmode
 
 
 
@@ -75,7 +46,7 @@ Das komplette Spiel soll in C geschrieben und in der Windows Konsole ausführbar
 
   
   ### 🎮Spielmechanik 
-   ##### wird Programmiert und Entwickelt von Tim Gebhard
+   ``` Tim Gebhard ```
    
 Das Modul der Spielsteuerung steuert den Programmablauf sowie die Spielmechanik.
 
@@ -88,17 +59,17 @@ Fährt die Schlange über einen durch die Spielmechanik zufällig auf dem Spielf
 
   
  ### 🖥️ Visualisierung  
-` Michael Böckelen`    
+ ``` Michael Böckelen ```   
 Dieses Modul ist für sämtliche Ausgaben auf dem Terminal verantwortlich und stellt entsprechende Schnittstellen zur Verfügung.
 
 * **Hauptaufgabe: Visualisierung des Spiels**  
 Bei der Visualisierung des Spiels soll rein auf ASCII-Zeichen zurückgegriffen werden. 
 Zu Anfang des Spiels soll das Spielfeld im Terminal initalisiert werden. Dabei wird die Anzeige zuerst gecleared und die Ränder des Spielfeldes ausgegeben. Anschließend soll bei einem Positionsupdate die Schlange am Spielfeld gezeichnet werden und jeweils nur die veränderten Bestandteile neu gezeichnet werden.
 
-* Möglichkeit zur einfachen Textausgabe während des Spiels, zum Beispiel für Debug-Daten. Am besten wird hier einfach der Text-Cursor an die alte Stelle zurückgesetzt 
-* Formatierte Ausgabe des Ranglisten-Screens mit Option eines Beschreibungstextes
+* Möglichkeit zur einfachen Textausgabe während des Spiels, zum Beispiel für Debug-Daten. Am besten ohne eigene Funktion
+* Formatierte Ausgabe des Ranglisten-Screens 
   
-  ### 🏆Rangliste 
+### 🏆Rangliste 
   ``` Lukas Sellmaier ```
    
    In diesem Modul wird die Rangliste angelegt sowie ihre Funktionen und das Struct zur übergabe der Daten definiert.
@@ -116,8 +87,8 @@ Dieses Modul stellt Schnittstellen zur besseren Fehlerdokumentation zur Verfügu
 * Anzeige und Abspeicherung von Debug-Daten
   
 ## ⌨️ Designspezifikation
- * Alle Funktionen sollten als `return` value den eigenen Fehler-Datentyp `Snake_ErrorType` verwenden, um Logging zu ermöglichen.
-   ### Eingabe
+
+ ### Eingabe
     ``` Lukas Sellmaier ``` 
  
  
@@ -382,12 +353,19 @@ Bei verwendung der Beispieldatei ist ``` NAME_MAX 11```  und ``` NUM_ENTRY 10```
 ` Michael Böckelen`    
 Diese Modul ist für sämtliche Ausgaben auf dem Terminal verantwortlich und stellt entsprechende Schnittstellen zur Verfügung. Als Rückgabewert wird der jeweils der `Snake_DBG_t`-Struct, beschrieben in `Debugging und Logging`, verwendet.
 
+**Startbildschirm**  
+```c
+Snake_DBG_t Snake_VS_Startscreen(void);
+```
+Diese Funktion gibt eine Pixelart vom Schriftzug "Snake" aus und fordert den Nutzer zur Eingabe seines Namen ein.
+<br><br/> 
+
 **Initialsierung des Spielbildschrims**  
 ```c
 Snake_DBG_t Snake_VS_init(unsigned short feldgroesse_x, unsigned short feldgroesse_y);
 ```
 * Zu Anfang des Spiels soll das Spielfeld mit den übergebenen Feldgröße-Parametern initialisiert werden und alle anderen bestehenden Ausgaben gelöscht werden. 
-Die Darstellung erfolgt mittels fest definierter ASCII-Zeichen. Desweiteren wird der formatierte High-Score-Counter dann angezeigt.
+Die Darstellung erfolgt mittels fest definierter ASCII-Zeichen. Desweiteren wird dann der formatierte High-Score-Counter, sowie die Bestenliste (global, deswegen ohne Parameterübergabe) neben dem Spielfeld angezeigt.
 <br><br/>
 
 **Update des Spielfeld-Inhalts**  
@@ -406,29 +384,26 @@ typedef struct {
 } Snake_Vektor_t;
 ```
 Intern wird der Cursor mittels der in `"Windows.h"` definierten `SetConsoleCursorPosition()`-Funktion an jene Koordinate gesetzt und ein entsprechendes Zeichen gesetzt.
-Anschließend wird dieser wieder unter das Spielfeld gesetzt, damit Ausgaben das Spielfeld nicht zerstören.
+Anschließend wird dieser wieder unter das Spielfeld gesetzt, damit Ausgaben das Spielfeld nicht zerstören. Um nicht jedes mal den kompletten Screen neu darstellen zu müssen wurde ein Algorithmus implementiert, der die veränderten Elemente herausrechnet und nur diese darstellt.
+<Details>
+https://github.com/boeckelm/SWEngProject/blob/main/Snake/Snake/Visualisierung_Algorithmus.svg
+</Details>
+	
 <br><br/>
 
 **Beenden des Spiels** 
 ```c
 Snake_DBG_t Snake_VS_end(void);
 ``` 
-* Zum Beenden der Spielausgabe soll diese Funktion ohne Parameter aufgerufen werden. Dabei wird das Terminal gecleared und der Cursor wieder oben links gesetzt.
+* Zum Beenden der Spielausgabe soll diese Funktion ohne Parameter aufgerufen werden. Dabei wird das Terminal gecleared und der Cursor wieder oben links gesetzt. Außerdem wird der Algorithmus zum Festellen der Schlangenänderung wieder zurückgesetzt.
 <br><br/>
 
 **Ausgabe eines Textes** 
 
-* Zur reinen Textausgabe kann wie gewohnt die printf()-Funktion o.Ä. beutzt werden. Intern wird der Text-Cursor immer unter das Spielfeld gesetzt, sodass keine Komplikationen auftreten können.
+* Zur reinen Textausgabe kann wie gewohnt die printf()-Funktion o.Ä. beutzt werden. Intern wird der Text-Cursor immer unter das Spielfeld gesetzt, sodass keine Komplikationen auftreten sollten.
 <br><br/>  
 
-**Darstellung der Rangliste** 
-```c
-Snake_DBG_t Snake_VS_Rangliste(Snake_Rangliste_t [10], char* text);
-``` 
-* Zur formatierten Ausgabe der Rangliste soll diese Funktion aufgerufen werden. Als Parameter sollen ein Array des im Ranglisten-Modul definierten Datentyps sowie ein Beschreibungstext übergeben werden. Mit dem Beschreibungstext kann zum Beispiel zur Eingabe des Namens aufgefordert werden.
-<br><br/>  
-
-   ### 🐞 Debugging und Logging 
+### 🐞 Debugging und Logging 
   ` Michael Böckelen`  
 Dieses Modul stellt Schnittstellen zur besseren Fehlerdokumentation zur Verfügung. 
 **Einheitlicher und auswertbarer Rückgabewert**
