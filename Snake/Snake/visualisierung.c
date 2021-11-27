@@ -162,7 +162,7 @@ Snake_DBG_t Snake_VS_Startscreen(){
     printf("\n /\" \\   :)  |    \\    \\ |  /   /  \\\\  \\ |: | \\  \\  (:      \"| ");
     printf("\n(_______/    \\___|\\____\\) (___/    \\___)(__|  \\__)  \\_______) ");
 
-    printf("\n\n Geben Sie ihren Namen ein:");
+    printf("\n\n Geben Sie ihren Namen ein: ");
    
    return Snake_DBG_Success(0);
 }
