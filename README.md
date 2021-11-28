@@ -384,10 +384,14 @@ typedef struct {
 } Snake_Vektor_t;
 ```
 Intern wird der Cursor mittels der in `"Windows.h"` definierten `SetConsoleCursorPosition()`-Funktion an jene Koordinate gesetzt und ein entsprechendes Zeichen gesetzt.
-Anschließend wird dieser wieder unter das Spielfeld gesetzt, damit Ausgaben das Spielfeld nicht zerstören. Um nicht jedes mal den kompletten Screen neu darstellen zu müssen wurde ein Algorithmus implementiert, der die veränderten Elemente herausrechnet und nur diese darstellt.
+Anschließend wird dieser wieder unter das Spielfeld gesetzt, damit Ausgaben das Spielfeld nicht zerstören. Um diese Vorgänge zu vereinfachen gibt es bestimmte Hilfsfunktionen, die den Cursor mittels Vektor setzen.  
+Um nicht jedes mal den kompletten Screen neu darstellen zu müssen wurde ein Algorithmus implementiert, der die veränderten Elemente herausrechnet und nur diese darstellt.
+
 <Details>
 https://github.com/boeckelm/SWEngProject/blob/main/Snake/Snake/Visualisierung_Algorithmus.svg
 </Details>
+
+
 	
 <br><br/>
 
