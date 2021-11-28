@@ -269,7 +269,7 @@ Diese Modul ist für sämtliche Ausgaben auf dem Terminal verantwortlich und ste
 ```c
 Snake_DBG_t Snake_VS_Startscreen(void);
 ```
-Diese Funktion gibt eine Pixelart vom Schriftzug "Snake" aus und fordert den Nutzer zur Eingabe seines Namen ein.
+Diese Funktion gibt eine Pixelart vom Schriftzug "Snake" aus und fordert den Nutzer zur Eingabe seines Namen auf.
 <br><br/> 
 
 **Initialsierung des Spielbildschrims**  
@@ -287,13 +287,13 @@ Snake_DBG_t Snake_VS_Update (Snake_Vektor_t snake [ ], unsigned short Anzahl, Sn
 * Während des Spiels müssen die Positionen der Elemente laufend angepasst werden. Dafür gibt es eine Update-Funktion, der mittels Array alle Positionsdaten der Schlange sowie die Goody-Koordinate übergeben werden. Außerdem wird die Anzahl der Schlangenstücke sowie der aktuelle Highscore übergeben. Der Koordinatenursprung befindet sich dabei immer unten links. Zur besseren Vorstellung ein Bild:  
 
 * <img align="center" width="541" height="210" src="https://abload.de/img/68747470733a2f2f61626udj3v.png"> 
-* Für die einzelnen Koordinaten soll der Struct `Snake_Vektor_t` oder der im Hauptteil definierten Struct, der je eine ganzzahlige x und y Variabe besitzt, verwendet werden.
+* Für die einzelnen Koordinaten soll der Struct `snakepart` oder der im Hauptteil definierten Struct, der je eine ganzzahlige x und y Variabe besitzt, verwendet werden.
 
 ```c
-typedef struct {
-    unsigned short x;
-    unsigned short y;
-} Snake_Vektor_t;
+typedef struct{
+     		int pos_X; //X-Position
+      		int pos_Y;//Y-Position
+    	 }snakepart;
 ```
 Intern wird der Cursor mittels der in `"Windows.h"` definierten `SetConsoleCursorPosition()`-Funktion an jene Koordinate gesetzt und ein entsprechendes Zeichen gesetzt.
 Anschließend wird dieser wieder unter das Spielfeld gesetzt, damit Ausgaben das Spielfeld nicht zerstören. Um diese Vorgänge zu vereinfachen gibt es bestimmte Hilfsfunktionen, die den Cursor mittels Vektor setzen.  
