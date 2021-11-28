@@ -54,12 +54,18 @@ void snake_eing_dir()
 
 
 // Auf beliebige Tasteneingabe warten
-
-bool snake_eing_any(){
+bool snake_eing_any() 
+{
 	printf_s("Möchten Sie nochmal Spielen? [J/N]");
-	char i=_getch();	//beliebigen tastendruck abwarten
-	if (i == 'J' || i == 'j') {
-		return true;
+
+	char i = "a";
+
+	while (i!= 'J' || 'j' || 'N' || 'n') {
+		i = _getch();
+
+		if (i == 'J' || i == 'j')
+			return true;
+		if (i == 'N' || i == 'n')
+			return false;
 	}
-	return false;
 }
