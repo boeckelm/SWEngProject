@@ -75,11 +75,11 @@ Zu Anfang des Spiels soll das Spielfeld im Terminal initalisiert werden. Dabei w
 ### 🏆Rangliste 
   ``` Lukas Sellmaier ```
    
-   In diesem Modul wird die Rangliste angelegt sowie ihre Funktionen und das Struct zur übergabe der Daten definiert.
-   * Es wird einen TextDatei angelegt, in welcher Zehn  Namen und ihre Punktestände gespeichert werden
-   * Zu Beginn enthält sie Zehn Platzhalter mit jeweils Null punkten
+   In diesem Modul wird die Rangliste angelegt sowie ihre Funktionen und das Struct zur Übergabe der Daten definiert.
+   * Es wird einen Textdatei angelegt, in welcher zehn  Namen und ihre Punktestände gespeichert werden
+   * Zu Beginn enthält sie zehn Platzhalter mit jeweils Null Punkten
    * Über eine Funktion kann man einen neuen Punktestand mit der Liste vergleichen und gegebenenfalls in diese aufnehmen
-   * Des weiteren wird hier ein Struct definiert mit dem die Daten anderen Funktionen zur verfügung gestellt werden können
+   * Des Weiteren wird hier ein Struct definiert mit dem die Daten anderen Funktionen zur Verfügung gestellt werden können
 
     
 ### 🐞 Debugging und Logging 
@@ -96,7 +96,7 @@ Dieses Modul stellt Schnittstellen zur besseren Fehlerdokumentation zur Verfügu
 
  <br/>
  
-  In diesem Modul werden die Drei Funktionen definiert, welche die Eingabe über die Tastatur ermöglichen.
+  In diesem Modul werden die drei Funktionen definiert, welche die Eingabe über die Tastatur ermöglichen.
    Diese sind die Namenseingabe , die Richtungsabfrage und die Bestätigung durch die Taste J.
   
   <br/>
@@ -120,7 +120,7 @@ Dieses Modul stellt Schnittstellen zur besseren Fehlerdokumentation zur Verfügu
 Diese Funktion dient zur Eingabe des Spielernamens über die Tastatur.
 
  + Zuerst wird ein String der Länge `NAME_MAX` über `stdin` eingelesen. Zu viel eingegeben Tasten werden ignoriert. Falls zu wenig Tasten eingelesen wurden, wird der String mit `-` aufgefüllt.
-Anschließend wird der String in die Globale variabel `spielername[MAX_NAME]` kopiert.
+Anschließend wird der String in die globale Variable `spielername[MAX_NAME]` kopiert.
  
  <br/><br/>
   
@@ -128,16 +128,16 @@ Anschließend wird der String in die Globale variabel `spielername[MAX_NAME]` ko
 
 Diese Funktion dient zur Eingabe der Bewegungsrichtung über die Tasten ```w``` ```a``` ```s``` ```d``` .
 
- + Über die Funktion `_kbhit` wird der Tastaturpuffer abgefragt. Wenn dieser `ungleich 0` ist, wird der Wert über `_getch` einer `char Variablen` zugewiesen. Diese Variable wird anschließend über eine `Switch-Case` Anweisung ausgewertet und je nach eingelesener Taste der Globale Wert `last_stearing verändert`. Hierfür wird das in `"Spielsteuerung.h"` definierte `enum stearing` verwendet.
+ + Über die Funktion `_kbhit` wird der Tastaturpuffer abgefragt. Wenn dieser `ungleich 0` ist, wird der Wert über `_getch` einer `char Variablen` zugewiesen. Diese Variable wird anschließend über eine `Switch-Case` Anweisung ausgewertet und je nach eingelesener Taste der globale Wert `last_stearing verändert`. Hierfür wird das in `"Spielsteuerung.h"` definierte `enum stearing` verwendet.
  
  <br/><br/>
   
  ```bool snake_eing_any()```
 
 
-Diese Funktion dient zur Bestätigung durch die Tasten J.
+Diese Funktion dient zur Bestätigung durch die Taste J.
 
- + Über `_getch` wird eine `char Variable` eingelesen. Wenn diese dem Wert `J` bzw. `j` entspricht, wird `true` als Rückgabewert ausgegeben. Alle anderen Eingaben führen zu einem Rückgabewert `false`. Diese Rückgabewerte sind vom Typ `bool` und wurden in `"Spielsteuerung.h"` definierte definiert. 
+ + Über `_getch` wird eine `char Variable` eingelesen. Wenn diese dem Wert `J` bzw. `j` entspricht, wird `true` als Rückgabewert ausgegeben. Alle anderen Eingaben führen zu einem Rückgabewert `false`. Diese Rückgabewerte sind vom Typ `bool` und wurden in `"Spielsteuerung.h"` definiert. 
 
 <br/>
 
@@ -324,7 +324,7 @@ Snake_DBG_t Snake_VS_end(void);
 ``` Lukas Sellmaier ``` 
 
 
- In diesem Modul werden die Drei Funktionen definiert mit welcher die Bestenliste initialisiert, ausgegeben und aktualisiert werden kann.
+ In diesem Modul werden die drei Funktionen definiert mit welcher die Bestenliste initialisiert, ausgegeben und aktualisiert werden kann.
  
  
 <br/>
@@ -339,14 +339,14 @@ Snake_DBG_t Snake_VS_end(void);
 
 <br/>
 
-  Das `struct highscore` ist ebenfalls hier Definiert:
+  Das `struct highscore` ist ebenfalls hier definiert:
 ```
     struct highscore {
            char name[NAME_MAX];
            int score;
            }; 
 ```
-In diesem Struktur werden alle Namen sowie die dazugehörigen Punktestände gleichzeitig in einem `struct Array` gepeichert werde.
+In diesem Struktur werden alle Namen sowie die dazugehörigen Punktestände gleichzeitig in einem `struct Array` gepeichert.
 
 <br/><br/>
 
