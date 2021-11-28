@@ -24,8 +24,8 @@ void snake_eing_name()
 	if (len > NAME_MAX - 1)
 		len = NAME_MAX - 1;
 
-	strncpy(spielername, string, len);
-	strncat(spielername, string_help, (NAME_MAX - 1) - len);
+	strncpy_s(spielername,NAME_MAX, string, len);
+	strncat_s(spielername, NAME_MAX, string_help, (NAME_MAX - 1) - len);
 
 }
  
