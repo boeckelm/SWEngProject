@@ -95,7 +95,7 @@ Dieses Modul stellt Schnittstellen zur besseren Fehlerdokumentation zur Verfügu
  <br/>
  
   In diesem Modul werden die drei Funktionen definiert, welche die Eingabe über die Tastatur ermöglichen.
-   Diese sind die Namenseingabe , die Richtungsabfrage und die Bestätigung durch die Taste J.
+   Diese sind die Namenseingabe , die Richtungsabfrage und die Bestätigung durch die Taste J oder N.
   
   <br/>
   
@@ -133,9 +133,9 @@ Diese Funktion dient zur Eingabe der Bewegungsrichtung über die Tasten ```w``` 
  ```bool snake_eing_any()```
 
 
-Diese Funktion dient zur Bestätigung durch die Taste J.
+Diese Funktion dient zur Bestätigung durch die Taste J oder N.
 
- + Über `_getch` wird eine `char Variable` eingelesen. Wenn diese dem Wert `J` bzw. `j` entspricht, wird `true` als Rückgabewert ausgegeben. Alle anderen Eingaben führen zu einem Rückgabewert `false`. Diese Rückgabewerte sind vom Typ `bool` und wurden in `"Spielsteuerung.h"` definiert. 
+ + Über `_getch` wird so lange eine `char Variable` eingelesen, bis diese dem Wert `j` oder `n` entspricht. Anschließend wird `true` bzw. `false` als Rückgabewert übergeben. Diese Rückgabewerte sind vom Typ `bool` und wurden in `"Spielsteuerung.h"` definiert. 
 
 <br/>
 
