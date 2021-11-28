@@ -11,8 +11,8 @@ Gruppenmitglieder:
 # Unser Spiel: Snake 🐍
 
 Als Projektziel wurde die Entwicklung des Computerspielklassikers Snake ausgewählt. Das Spiel überzeugt besonders durch seine einfache und intuitive Spielweise, bei gleichzeitig hohen möglichen Komplexitätsgraden in Teilmodulen sowie der nativen Spieloptik auf der Konsole.  
-
-[![Spielszenene](http://i3.ytimg.com/vi/IleS5o2VdLA/maxresdefault.jpg)](https://www.youtube.com/watch?v=IleS5o2VdLA)
+<br><br />
+[![Spielszenene](https://abload.de/img/youtubei1kzn.png)](https://www.youtube.com/watch?v=IleS5o2VdLA)
 
 
 ## ⚙️ Anforderungsdefinition
