@@ -1,4 +1,14 @@
-﻿#include <stdio.h>
+/** @file Spielsteuerung.c
+ *
+ * @brief Funktionen zur Spielsteuerung des Spieles "Snake".
+ *
+ * @version 1.0.1
+ *
+ * @par
+ * COPYRIGHT NOTICE: (c) 2021 Tim Gebhard, Hochschule Landshut.  All rights reserved.
+ */
+
+#include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 #include <Windows.h>
